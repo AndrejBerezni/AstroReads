@@ -1,6 +1,8 @@
 :root {
-  --head-font: "Lato", sans-serif;
-  --text-font: "Orbitron", sans-serif;
+  --head-font: "Orbitron", sans-serif;
+  --text-font: "Lato", sans-serif;
+  --primary: #29def0;
+  --secondary: #f00a60;
 }
 
 #root {

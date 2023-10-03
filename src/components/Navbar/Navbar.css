@@ -1,0 +1,8 @@
+@import url("../../App.css");
+
+.MuiTooltip-tooltip {
+  background-color: #f00a60;
+  color: #29def0;
+  font-weight: bold;
+  font-family: var(--head-font);
+}
