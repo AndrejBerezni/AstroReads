@@ -7,18 +7,24 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import InfoIcon from "@mui/icons-material/Info";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 const actions = [
-  { icon: <HomeIcon />, name: "Home" },
-  { icon: <PermIdentityIcon />, name: "User Page" },
-  { icon: <WhatshotIcon />, name: "Trending" },
-  { icon: <InfoIcon />, name: "About" },
+  { icon: <HomeIcon />, name: "Home", to: "/" },
+  { icon: <PermIdentityIcon />, name: "User Page", to: "/profile" },
+  { icon: <WhatshotIcon />, name: "Trending", to: "/trending" },
+  { icon: <InfoIcon />, name: "About", to: "/about" },
 ];
 
 function Navbar() {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleLinkClick = (destination: string) => {
+    handleClose();
+    navigate(destination);
+  };
 
   return (
     <SpeedDial
@@ -32,10 +38,9 @@ function Navbar() {
     >
       {actions.map((action) => (
         <SpeedDialAction
-          key={action.name}
           icon={action.icon}
           tooltipTitle={action.name}
-          onClick={handleClose}
+          onClick={() => handleLinkClick(action.to)}
           sx={{
             backgroundColor: "#29def0",
             "&:hover": {

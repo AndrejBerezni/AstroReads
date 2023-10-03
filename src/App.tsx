@@ -5,6 +5,7 @@ import About from "./pages/About/About";
 import UserPage from "./pages/UserPage";
 import Navbar from "./components/Navbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Route, Routes } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -17,14 +18,18 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <h1>AstroReads</h1>
-      <Navbar />
-      <Home />
-      <Trending />
-      <About />
-      <UserPage />
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<UserPage />} />
+          <Route path="/trending" element={<Trending />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </ThemeProvider>
+    </>
   );
 }
 
