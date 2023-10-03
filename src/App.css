@@ -26,7 +26,6 @@ body {
   min-height: 100vh;
   background-color: #242424;
   color: var(--primary);
-  overflow-y: hidden;
 }
 
 p:hover,
