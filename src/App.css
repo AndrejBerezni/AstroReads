@@ -6,8 +6,35 @@
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100vw;
+  max-width: 100vw;
+  padding: 0;
   text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  place-items: center;
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 100vh;
+  background-color: #242424;
+  color: var(--primary);
+  overflow-y: hidden;
+}
+
+p:hover,
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover {
+  cursor: default;
 }

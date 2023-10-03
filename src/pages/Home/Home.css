@@ -1,0 +1,50 @@
+@import url("../../App.css");
+
+.title-first {
+  font-family: var(--head-font);
+  color: var(--secondary);
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+.title-second {
+  color: var(--primary);
+  text-transform: uppercase;
+  font-family: var(--head-font);
+  margin-top: 0;
+  font-size: 3rem;
+}
+.home-image {
+  max-width: 500px;
+}
+
+.hero-text {
+  font-family: var(--text-font);
+  color: var(--secondary);
+  max-width: 500px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.sign-in-btn {
+  font-family: var(--head-font) !important;
+  font-weight: bold !important;
+}
+
+@media (max-width: 768px) {
+  .title-first {
+    font-size: 1.5rem;
+  }
+  .title-second {
+    font-size: 2.2rem;
+  }
+  .home-image {
+    max-width: 100%;
+  }
+}
+
+@media (max-height: 800px) {
+  .home-image {
+    max-height: 200px;
+  }
+}

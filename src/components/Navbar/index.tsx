@@ -1,11 +1,11 @@
 import * as React from "react";
 import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import HomeIcon from "@mui/icons-material/Home";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import InfoIcon from "@mui/icons-material/Info";
+import MenuIcon from "@mui/icons-material/Menu";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 
@@ -30,7 +30,7 @@ function Navbar() {
     <SpeedDial
       ariaLabel="SpeedDial controlled open example"
       sx={{ position: "fixed", top: "32px", left: "32px" }}
-      icon={<SpeedDialIcon />}
+      icon={<MenuIcon />}
       onClose={handleClose}
       onOpen={handleOpen}
       open={open}
