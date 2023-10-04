@@ -1,0 +1,7 @@
+.about-span {
+  color: var(--primary);
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: var(--head-font);
+  font-size: 1.4rem;
+}

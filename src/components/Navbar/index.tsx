@@ -6,7 +6,7 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import InfoIcon from "@mui/icons-material/Info";
 import MenuIcon from "@mui/icons-material/Menu";
-import "./Navbar.css";
+import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
 const actions = [

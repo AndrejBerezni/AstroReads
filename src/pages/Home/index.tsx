@@ -1,10 +1,8 @@
 import homeImage from "../../assets/astroreadshomeimage-nobg.png";
-import "./Home.css";
+import "./styles.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { motion } from "framer-motion";
-import planet1 from "../../assets/planet1.png";
-import planet2 from "../../assets/planet2.png";
 
 function Home() {
   return (
@@ -73,56 +71,6 @@ function Home() {
           Sign In
         </Button>
       </motion.div>
-      {/* Animated planets in the background: */}
-      <motion.img
-        src={planet2}
-        className="planet-img"
-        initial={{
-          rotateY: 180,
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      />
-      <motion.img
-        src={planet1}
-        className="planet-img"
-        animate={{
-          scale: [1, 1.3, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 2.5 }}
-      />
-      <motion.img
-        src={planet2}
-        className="planet-img"
-        initial={{
-          rotateY: 180,
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      />
-      <motion.img
-        src={planet1}
-        className="planet-img"
-        initial={{
-          rotateY: 180,
-        }}
-        animate={{
-          scale: [1, 1.3, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 3 }}
-      />
-      <motion.img
-        src={planet2}
-        className="planet-img"
-        animate={{
-          scale: [1, 1.2, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 2.5 }}
-      />
     </Box>
   );
 }

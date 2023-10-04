@@ -24,7 +24,11 @@ body {
   width: 100vw;
   max-width: 100vw;
   min-height: 100vh;
-  background-color: #242424;
+  /* background-color: #242424; */
+  background-image: url("./assets/bgimage.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--primary);
 }
 
