@@ -26,7 +26,8 @@ function Home() {
           opacity: 0,
         }}
         transition={{
-          duration: 1,
+          duration: 2,
+          type: "spring",
         }}
       >
         <h2 className="title-first">Welcome to</h2>
@@ -43,7 +44,8 @@ function Home() {
           opacity: 0,
         }}
         transition={{
-          duration: 1,
+          duration: 2,
+          type: "spring",
         }}
         src={homeImage}
         className="home-image"

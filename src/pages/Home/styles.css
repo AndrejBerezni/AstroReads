@@ -1,18 +1,34 @@
 @import url("../../App.css");
 
-.title-first {
+.title-first,
+.subtitle-trending {
   font-family: var(--head-font);
   color: var(--secondary);
   margin-bottom: 0;
   font-size: 2rem;
 }
+
+.subtitle-trending {
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
 .title-second {
+  font-size: 3rem;
+}
+
+.title-second,
+.title-trending {
   color: var(--primary);
   text-transform: uppercase;
   font-family: var(--head-font);
   margin-top: 0;
-  font-size: 3rem;
 }
+
+.title-trending {
+  font-size: 2.5rem;
+}
+
 .home-image,
 .about-image {
   max-width: 500px;

@@ -19,11 +19,11 @@ function About() {
     >
       <motion.img
         animate={{
-          scale: 1,
+          y: 0,
           opacity: 1,
         }}
         initial={{
-          scale: 0,
+          y: -200,
           opacity: 0,
         }}
         transition={{
@@ -43,7 +43,8 @@ function About() {
           opacity: 0,
         }}
         transition={{
-          duration: 1,
+          duration: 2,
+          type: "spring",
         }}
       >
         <p className="about-text">

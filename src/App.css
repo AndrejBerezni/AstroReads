@@ -3,6 +3,7 @@
   --text-font: "Lato", sans-serif;
   --primary: #29def0;
   --secondary: #f00a60;
+  --bg-color: #242424;
 }
 
 #root {
@@ -40,4 +41,12 @@ h4:hover,
 h5:hover,
 h6:hover {
   cursor: default;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-size: auto;
+    background-position: top;
+    background-repeat: repeat;
+  }
 }

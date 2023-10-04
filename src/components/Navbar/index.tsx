@@ -38,6 +38,7 @@ function Navbar() {
     >
       {actions.map((action) => (
         <SpeedDialAction
+          key={action.name}
           icon={action.icon}
           tooltipTitle={action.name}
           onClick={() => handleLinkClick(action.to)}
