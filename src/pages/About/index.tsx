@@ -3,7 +3,8 @@ import "./styles.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { motion } from "framer-motion";
+import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeInFromAbove";
+import AnimationFadeInFromBelow from "../../components/animation/AnimationFadeInFromBelow";
 
 function About() {
   return (
@@ -17,36 +18,10 @@ function About() {
         overflow: "hidden",
       }}
     >
-      <motion.img
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        initial={{
-          y: -200,
-          opacity: 0,
-        }}
-        transition={{
-          duration: 2,
-          type: "spring",
-        }}
-        src={aboutImage}
-        className="about-image"
-      />
-      <motion.div
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        initial={{
-          y: 200,
-          opacity: 0,
-        }}
-        transition={{
-          duration: 2,
-          type: "spring",
-        }}
-      >
+      <AnimationFadeInFromAbove>
+        <img src={aboutImage} className="about-image" />
+      </AnimationFadeInFromAbove>
+      <AnimationFadeInFromBelow>
         <p className="about-text">
           Thank you for visiting
           <br />
@@ -67,7 +42,7 @@ function About() {
         >
           GitHub
         </Button>
-      </motion.div>
+      </AnimationFadeInFromBelow>
     </Box>
   );
 }

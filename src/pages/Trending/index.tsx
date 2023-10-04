@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TrendingBookItem from "../../components/TrendingBookItem";
 import axios, { AxiosResponse } from "axios";
-import { motion } from "framer-motion";
+import AnimationFadeIn from "../../components/animation/AnimationFadeIn";
 
 interface IBook {
   title: string;
@@ -29,7 +29,7 @@ function Trending() {
         const response: AxiosResponse<any, any> = await axios.get(
           `https://api.nytimes.com/svc/books/v3/lists/current/${list}.json?api-key=${nyTimesApiKey}`
         );
-        const data = response.data.results.books.slice(0, 5);
+        const data = response.data.results.books.slice(0, 10);
         const newBooks: IBook[] = data.map((book: any) => ({
           title: book.title,
           author: book.author,
@@ -55,77 +55,38 @@ function Trending() {
         paddingTop: "100px",
       }}
     >
-      <motion.h1
-        className="title-trending"
-        animate={{
-          scale: 1,
-          opacity: 1,
-        }}
-        initial={{
-          scale: 0,
-          opacity: 0,
-        }}
-        transition={{
-          duration: 1,
-          delay: 1.5,
-        }}
-      >
-        The New York Times Best Sellers
-      </motion.h1>
-      <motion.h2
-        className="subtitle-trending"
-        animate={{
-          scale: 1,
-          opacity: 1,
-        }}
-        initial={{
-          scale: 0,
-          opacity: 0,
-        }}
-        transition={{
-          duration: 1,
-          delay: 1.5,
-        }}
-      >
-        Top 5 fiction books
-      </motion.h2>
+      <AnimationFadeIn>
+        <h1 className="title-trending">The New York Times Best Sellers</h1>
+      </AnimationFadeIn>
+      <AnimationFadeIn>
+        <h2 className="subtitle-trending">Top 10 fiction books</h2>
+      </AnimationFadeIn>
+
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-around",
           flexWrap: "wrap",
-          gap: "20px",
-          padding: "20px",
+          gap: "30px",
+          padding: "0",
+          margin: "0 0 20px",
         }}
       >
         {fictionBooks.map((book) => (
           <TrendingBookItem key={book.title} book={book} />
         ))}
       </Box>
-      <motion.h2
-        className="subtitle-trending"
-        animate={{
-          scale: 1,
-          opacity: 1,
-        }}
-        initial={{
-          scale: 0,
-          opacity: 0,
-        }}
-        transition={{
-          duration: 1,
-          delay: 1.5,
-        }}
-      >
-        Top 5 nonfiction books
-      </motion.h2>
+      <AnimationFadeIn>
+        <h2 className="subtitle-trending">Top 10 nonfiction books</h2>
+      </AnimationFadeIn>
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-around",
           flexWrap: "wrap",
           gap: "20px",
-          padding: "20px",
+          padding: "0",
+          margin: "0 0 20px",
         }}
       >
         {nonfictionBooks.map((book) => (
