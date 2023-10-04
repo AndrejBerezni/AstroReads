@@ -25,7 +25,7 @@ function UserPage() {
         <Tab
           label="Explore"
           sx={{
-            color: activeTab === 0 ? "primary.main" : "secondary.main",
+            color: activeTab === 0 ? "primary.main" : "#f00a60",
             fontWeight: "bold",
           }}
           component={Link}
@@ -34,7 +34,7 @@ function UserPage() {
         <Tab
           label="My Books"
           sx={{
-            color: activeTab === 1 ? "primary.main" : "secondary.main",
+            color: activeTab === 1 ? "primary.main" : "#f00a60",
             fontWeight: "bold",
           }}
           component={Link}
@@ -43,7 +43,7 @@ function UserPage() {
         <Tab
           label="Wishlist"
           sx={{
-            color: activeTab === 2 ? "primary.main" : "secondary.main",
+            color: activeTab === 2 ? "primary.main" : "#f00a60",
             fontWeight: "bold",
           }}
           component={Link}
