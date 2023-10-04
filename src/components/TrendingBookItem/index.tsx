@@ -2,7 +2,7 @@ import "./styles.css";
 import { IBook } from "../../pages/Trending";
 import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
-import { motion } from "framer-motion";
+import AnimationTrendingBook from "../animation/AnimationTrendingBook";
 
 interface ITrendingBookItemProps {
   book: IBook;
@@ -10,21 +10,7 @@ interface ITrendingBookItemProps {
 
 function TrendingBookItem({ book }: ITrendingBookItemProps) {
   return (
-    <motion.div
-      className="trending-book-item-wrapper"
-      animate={{
-        scale: 1,
-        opacity: 1,
-      }}
-      initial={{
-        scale: 0,
-        opacity: 0,
-      }}
-      transition={{
-        duration: 1,
-        delay: book.rank * 0.2,
-      }}
-    >
+    <AnimationTrendingBook delay={book.rank}>
       <Badge
         badgeContent={book.rank}
         color="primary"
@@ -45,7 +31,7 @@ function TrendingBookItem({ book }: ITrendingBookItemProps) {
           <img src={book.image} alt={book.title} />
         </div>
       </Badge>
-    </motion.div>
+    </AnimationTrendingBook>
   );
 }
 

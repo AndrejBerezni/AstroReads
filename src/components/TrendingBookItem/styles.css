@@ -1,7 +1,6 @@
 .trending-book-item,
 .trending-book-item-wrapper {
   width: 300px;
-  /* aspect-ratio: 1/1; */
   display: flex;
   justify-content: space-between;
   background-color: var(--bg-color);
