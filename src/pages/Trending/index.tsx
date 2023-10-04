@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TrendingBookItem from "../../components/TrendingBookItem";
 import axios, { AxiosResponse } from "axios";
+import { motion } from "framer-motion";
 
 interface IBook {
   title: string;
@@ -51,11 +52,43 @@ function Trending() {
       sx={{
         placeItems: "center",
         minHeight: "100vh",
-        paddingTop: "120px",
+        paddingTop: "100px",
       }}
     >
-      <h1 className="title-trending">The New York Times Best Sellers</h1>
-      <h2 className="subtitle-trending">Top 5 fiction books</h2>
+      <motion.h1
+        className="title-trending"
+        animate={{
+          scale: 1,
+          opacity: 1,
+        }}
+        initial={{
+          scale: 0,
+          opacity: 0,
+        }}
+        transition={{
+          duration: 1,
+          delay: 1.5,
+        }}
+      >
+        The New York Times Best Sellers
+      </motion.h1>
+      <motion.h2
+        className="subtitle-trending"
+        animate={{
+          scale: 1,
+          opacity: 1,
+        }}
+        initial={{
+          scale: 0,
+          opacity: 0,
+        }}
+        transition={{
+          duration: 1,
+          delay: 1.5,
+        }}
+      >
+        Top 5 fiction books
+      </motion.h2>
       <Box
         sx={{
           display: "flex",
@@ -69,7 +102,23 @@ function Trending() {
           <TrendingBookItem key={book.title} book={book} />
         ))}
       </Box>
-      <h2 className="subtitle-trending">Top 5 nonfiction books</h2>
+      <motion.h2
+        className="subtitle-trending"
+        animate={{
+          scale: 1,
+          opacity: 1,
+        }}
+        initial={{
+          scale: 0,
+          opacity: 0,
+        }}
+        transition={{
+          duration: 1,
+          delay: 1.5,
+        }}
+      >
+        Top 5 nonfiction books
+      </motion.h2>
       <Box
         sx={{
           display: "flex",
