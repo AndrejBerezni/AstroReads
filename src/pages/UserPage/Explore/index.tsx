@@ -1,40 +1,9 @@
 import { useState, ChangeEvent } from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { styled } from "@mui/material/styles";
 import axios from "axios";
 import { debounce } from "lodash";
-
-const CustomTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "#29def0",
-  },
-  "& label": {
-    color: "#f00a60",
-    fontFamily: '"Orbitron", sans-serif',
-  },
-  "&:hover label": {
-    color: "#29def0",
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: "#29def0",
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "#f00a60",
-    },
-    "&:hover fieldset": {
-      borderColor: "#29def0",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#29def0",
-    },
-    "& .MuiOutlinedInput-input": {
-      color: "#29def0",
-      fontFamily: '"Orbitron", sans-serif',
-    },
-  },
-});
+import CustomTextField from "./customstyle";
+import SearchResult from "../../../components/SearchResult";
 
 interface IBook {
   id: string;
@@ -83,25 +52,27 @@ function Explore() {
         sx={{
           width: "500px",
           maxWidth: "80%",
-          marginTop: "30px",
+          margin: "30px",
         }}
         label="Search"
         onChange={handleChange}
         value={input}
       />
-      <ul>
-        {results.map((item) => (
-          <li key={item.id}>
-            <h3>{item.title}</h3>
-            <h4>{item.author}</h4>
-            <p>{item.description}</p>
-            <h5>{item.pages}</h5>
-            <img src={item.image} alt={item.title} />
-          </li>
-        ))}
-      </ul>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+          justifyContent: "space-around",
+          paddingBottom: "20px",
+        }}
+      >
+        {input.length > 2 && //This will clean list if user deletes input, instead of keeping results for first 3 letters
+          results.map((item) => <SearchResult book={item} />)}
+      </Box>
     </Box>
   );
 }
 
 export default Explore;
+export type { IBook };
