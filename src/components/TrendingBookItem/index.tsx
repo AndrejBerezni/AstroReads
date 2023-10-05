@@ -1,11 +1,11 @@
 import "./styles.css";
-import { IBook } from "../../pages/Trending";
+import { IBookTrending } from "../../pages/Trending";
 import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
 import AnimationTrendingBook from "../animation/AnimationTrendingBook";
 
 interface ITrendingBookItemProps {
-  book: IBook;
+  book: IBookTrending;
 }
 
 function TrendingBookItem({ book }: ITrendingBookItemProps) {
