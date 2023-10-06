@@ -4,6 +4,7 @@ import Tab from "@mui/material/Tab";
 import { Outlet } from "react-router";
 import { Link, useLocation } from "react-router-dom";
 import { tabStyle, userPageBoxStyle } from "../../MUIstyles/userpage";
+import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeInFromAbove";
 
 function UserPage() {
   const location = useLocation();
@@ -22,27 +23,29 @@ function UserPage() {
 
   return (
     <Box sx={userPageBoxStyle}>
-      <Tabs value={activeTab} centered>
-        <Tab
-          label="Explore"
-          sx={tabStyle(activeTab, 0)}
-          component={Link}
-          to="/profile/explore"
-        />
-        <Tab
-          label="My Books"
-          sx={tabStyle(activeTab, 1)}
-          component={Link}
-          to="/profile/mybooks"
-        />
-        <Tab
-          label="Wishlist"
-          sx={tabStyle(activeTab, 2)}
-          component={Link}
-          to="/profile/wishlist"
-        />
-      </Tabs>
-      <Outlet />
+      <AnimationFadeInFromAbove>
+        <Tabs value={activeTab} centered>
+          <Tab
+            label="Explore"
+            sx={tabStyle(activeTab, 0)}
+            component={Link}
+            to="/profile/explore"
+          />
+          <Tab
+            label="My Books"
+            sx={tabStyle(activeTab, 1)}
+            component={Link}
+            to="/profile/mybooks"
+          />
+          <Tab
+            label="Wishlist"
+            sx={tabStyle(activeTab, 2)}
+            component={Link}
+            to="/profile/wishlist"
+          />
+        </Tabs>
+        <Outlet />
+      </AnimationFadeInFromAbove>
     </Box>
   );
 }

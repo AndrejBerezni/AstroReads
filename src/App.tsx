@@ -1,5 +1,5 @@
 import "./App.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Home from "./pages/Home";
 import Trending from "./pages/Trending";
 import About from "./pages/About";
@@ -13,6 +13,7 @@ import { Route, Routes } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import { AuthContext } from "./AuthContext";
+import { authentication } from "./firebase-config";
 
 const theme = createTheme({
   palette: {
@@ -24,7 +25,20 @@ const theme = createTheme({
 });
 
 function App() {
-  const { auth } = useContext(AuthContext);
+  const { auth, signIn, signOut } = useContext(AuthContext);
+
+  //Handle keeping user signed in on page refresh
+  useEffect(() => {
+    const unsubscribe = authentication.onAuthStateChanged((user) => {
+      if (user) {
+        signIn(user.uid);
+      } else {
+        signOut();
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
   return (
     <>
       <ThemeProvider theme={theme}>

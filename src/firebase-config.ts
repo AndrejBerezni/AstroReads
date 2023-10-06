@@ -20,8 +20,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-setPersistence(auth, browserSessionPersistence)
+const authentication = getAuth(app);
+setPersistence(authentication, browserSessionPersistence)
   .then(() => {
     // Persistence successfully enabled
   })
@@ -33,7 +33,7 @@ setPersistence(auth, browserSessionPersistence)
 const provider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(authentication, provider);
     return result.user.uid;
   } catch (error) {
     throw error;
@@ -43,7 +43,11 @@ const signInWithGoogle = async () => {
 //Email Sign up
 const signUpWithEmail = async (email: string, password: string) => {
   try {
-    const newUser = await createUserWithEmailAndPassword(auth, email, password);
+    const newUser = await createUserWithEmailAndPassword(
+      authentication,
+      email,
+      password
+    );
     return newUser.user.uid;
   } catch (error) {
     throw error;
@@ -53,7 +57,11 @@ const signUpWithEmail = async (email: string, password: string) => {
 //Email sign in
 const signInWithEmail = async (email: string, password: string) => {
   try {
-    const user = await signInWithEmailAndPassword(auth, email, password);
+    const user = await signInWithEmailAndPassword(
+      authentication,
+      email,
+      password
+    );
     return user.user.uid;
   } catch (error) {
     throw error;
@@ -65,4 +73,10 @@ const signOutUser = () => {
   signOut(getAuth());
 };
 
-export { signInWithGoogle, signUpWithEmail, signInWithEmail, signOutUser };
+export {
+  authentication,
+  signInWithGoogle,
+  signUpWithEmail,
+  signInWithEmail,
+  signOutUser,
+};
