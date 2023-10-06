@@ -5,19 +5,11 @@ import Button from "@mui/material/Button";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeInFromAbove";
 import AnimationFadeInFromBelow from "../../components/animation/AnimationFadeInFromBelow";
+import { mainContainerStyle } from "../../MUIstyles/homeabout";
 
 function About() {
   return (
-    <Box
-      display="flex"
-      sx={{
-        flexDirection: "column",
-        placeItems: "center",
-        minHeight: "100vh",
-        paddingTop: "100px",
-        overflow: "hidden",
-      }}
-    >
+    <Box display="flex" sx={mainContainerStyle}>
       <AnimationFadeInFromAbove>
         <img src={aboutImage} className="about-image" />
       </AnimationFadeInFromAbove>

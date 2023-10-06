@@ -5,19 +5,11 @@ import Button from "@mui/material/Button";
 import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeInFromAbove";
 import AnimationFadeInFromBelow from "../../components/animation/AnimationFadeInFromBelow";
 import AnimationFadeInFromBelowDelay from "../../components/animation/AnimationFadeInFromBelowDelay";
+import { mainContainerStyle } from "../../MUIstyles/homeabout";
 
 function Home() {
   return (
-    <Box
-      display="flex"
-      sx={{
-        flexDirection: "column",
-        placeItems: "center",
-        minHeight: "100vh",
-        paddingTop: "100px",
-        overflow: "hidden",
-      }}
-    >
+    <Box display="flex" sx={mainContainerStyle}>
       <AnimationFadeInFromAbove>
         <h2 className="title-first">Welcome to</h2>
         <h1 className="title-second">Astro Reads</h1>

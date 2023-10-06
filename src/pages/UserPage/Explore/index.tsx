@@ -2,7 +2,10 @@ import { useState, ChangeEvent } from "react";
 import Box from "@mui/material/Box";
 import axios from "axios";
 import { debounce } from "lodash";
-import CustomTextField from "./customstyle";
+import {
+  CustomTextField,
+  bookContainerStyle,
+} from "../../../MUIstyles/userpage";
 import SearchResult from "../../../components/SearchResult";
 
 interface IBook {
@@ -58,15 +61,7 @@ function Explore() {
         onChange={handleChange}
         value={input}
       />
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "20px",
-          justifyContent: "space-around",
-          paddingBottom: "20px",
-        }}
-      >
+      <Box sx={bookContainerStyle}>
         {input.length > 2 && //This will clean list if user deletes input, instead of keeping results for first 3 letters
           results.map((item) => <SearchResult book={item} />)}
       </Box>

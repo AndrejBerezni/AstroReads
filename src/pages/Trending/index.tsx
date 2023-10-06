@@ -3,6 +3,10 @@ import Box from "@mui/material/Box";
 import TrendingBookItem from "../../components/TrendingBookItem";
 import axios, { AxiosResponse } from "axios";
 import AnimationFadeIn from "../../components/animation/AnimationFadeIn";
+import {
+  sectionContainerStyle,
+  trendingContainerStyle,
+} from "../../MUIstyles/about";
 
 interface IBookTrending {
   title: string;
@@ -48,13 +52,7 @@ function Trending() {
   }, []);
 
   return (
-    <Box
-      sx={{
-        placeItems: "center",
-        minHeight: "100vh",
-        paddingTop: "100px",
-      }}
-    >
+    <Box sx={trendingContainerStyle}>
       <AnimationFadeIn>
         <h1 className="title-trending">The New York Times Best Sellers</h1>
       </AnimationFadeIn>
@@ -62,16 +60,7 @@ function Trending() {
         <h2 className="subtitle-trending">Top 10 fiction books</h2>
       </AnimationFadeIn>
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-          gap: "30px",
-          padding: "0",
-          margin: "0 0 20px",
-        }}
-      >
+      <Box sx={sectionContainerStyle}>
         {fictionBooks.map((book) => (
           <TrendingBookItem key={book.title} book={book} />
         ))}
@@ -79,16 +68,7 @@ function Trending() {
       <AnimationFadeIn>
         <h2 className="subtitle-trending">Top 10 nonfiction books</h2>
       </AnimationFadeIn>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-          gap: "20px",
-          padding: "0",
-          margin: "0 0 20px",
-        }}
-      >
+      <Box sx={sectionContainerStyle}>
         {nonfictionBooks.map((book) => (
           <TrendingBookItem key={book.title} book={book} />
         ))}

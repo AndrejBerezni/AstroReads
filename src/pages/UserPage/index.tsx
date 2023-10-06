@@ -3,6 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Outlet } from "react-router";
 import { Link, useLocation } from "react-router-dom";
+import { tabStyle, userPageBoxStyle } from "../../MUIstyles/userpage";
 
 function UserPage() {
   const location = useLocation();
@@ -20,32 +21,23 @@ function UserPage() {
   const activeTab = getActiveTab();
 
   return (
-    <Box sx={{ width: "100%", paddingTop: "100px" }}>
+    <Box sx={userPageBoxStyle}>
       <Tabs value={activeTab} centered>
         <Tab
           label="Explore"
-          sx={{
-            color: activeTab === 0 ? "primary.main" : "#f00a60",
-            fontWeight: "bold",
-          }}
+          sx={tabStyle(activeTab, 0)}
           component={Link}
           to="/profile/explore"
         />
         <Tab
           label="My Books"
-          sx={{
-            color: activeTab === 1 ? "primary.main" : "#f00a60",
-            fontWeight: "bold",
-          }}
+          sx={tabStyle(activeTab, 1)}
           component={Link}
           to="/profile/mybooks"
         />
         <Tab
           label="Wishlist"
-          sx={{
-            color: activeTab === 2 ? "primary.main" : "#f00a60",
-            fontWeight: "bold",
-          }}
+          sx={tabStyle(activeTab, 2)}
           component={Link}
           to="/profile/wishlist"
         />
