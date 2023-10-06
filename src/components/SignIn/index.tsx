@@ -17,8 +17,9 @@ import {
 import { AuthContext } from "../../AuthContext";
 
 function SignIn() {
-  const { show, hideForms } = useContext(AuthContext);
+  const { show, hideForms, showSignUp } = useContext(AuthContext);
   const handleClose = () => hideForms();
+  const handleSignUpClick = () => showSignUp();
 
   return (
     <Modal
@@ -50,7 +51,11 @@ function SignIn() {
           Sign In
         </Button>
         <p style={modalP}>Don't have an account?</p>
-        <Link href="#" sx={{ fontFamily: "var(--text-font)" }}>
+        <Link
+          href="#"
+          sx={{ fontFamily: "var(--text-font)" }}
+          onClick={handleSignUpClick}
+        >
           {"Sign Up"}
         </Link>
         <p style={modalP}>Or</p>

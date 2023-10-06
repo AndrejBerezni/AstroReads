@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import homeImage from "../../assets/astroreadshomeimage-nobg.png";
 import "./styles.css";
 import Box from "@mui/material/Box";
@@ -6,8 +7,13 @@ import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeIn
 import AnimationFadeInFromBelow from "../../components/animation/AnimationFadeInFromBelow";
 import AnimationFadeInFromBelowDelay from "../../components/animation/AnimationFadeInFromBelowDelay";
 import { mainContainerStyle } from "../../MUIstyles/homeabout";
+import { AuthContext } from "../../AuthContext";
 
 function Home() {
+  const { auth, showSignIn } = useContext(AuthContext);
+
+  const handleClick = () => showSignIn();
+
   return (
     <Box display="flex" sx={mainContainerStyle}>
       <AnimationFadeInFromAbove>
@@ -19,13 +25,19 @@ function Home() {
       </AnimationFadeInFromBelow>
       <AnimationFadeInFromBelowDelay>
         <p className="hero-text">
-          Prepare for an interstellar journey through the galaxy of books! Sign
-          in or navigate the cosmic menu above to launch your literary
-          exploration mission!
+          Prepare for an interstellar journey through the galaxy of books!{" "}
+          {auth.isSignedIn ? "N" : "Sign in or n"}avigate the cosmic menu above
+          to launch your literary exploration mission!
         </p>
-        <Button variant="contained" className="sign-in-btn">
-          Sign In
-        </Button>
+        {!auth.isSignedIn && (
+          <Button
+            variant="contained"
+            className="sign-in-btn"
+            onClick={handleClick}
+          >
+            Sign In
+          </Button>
+        )}
       </AnimationFadeInFromBelowDelay>
     </Box>
   );

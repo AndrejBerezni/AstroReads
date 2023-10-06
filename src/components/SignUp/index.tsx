@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -6,14 +6,15 @@ import Avatar from "@mui/material/Avatar";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { CustomTextField } from "../../MUIstyles/userpage";
 import { modalBox, modalHeader, modalBtn } from "../../MUIstyles/forms";
+import { AuthContext } from "../../AuthContext";
 
 function SignUp() {
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
+  const { show, hideForms } = useContext(AuthContext);
+  const handleClose = () => hideForms();
 
   return (
     <Modal
-      open={open}
+      open={show.signUpForm}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"

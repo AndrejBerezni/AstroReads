@@ -11,7 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
-import { AuthProvider, AuthContext } from "./AuthContext";
+import { AuthProvider } from "./AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -25,8 +25,8 @@ const theme = createTheme({
 function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <AuthProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -42,8 +42,8 @@ function App() {
           </Routes>
           <SignIn />
           <SignUp />
-        </AuthProvider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </>
   );
 }

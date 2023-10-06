@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useContext } from "react";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import HomeIcon from "@mui/icons-material/Home";
@@ -8,6 +8,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthContext";
 
 const actions = [
   { icon: <HomeIcon />, name: "Home", to: "/" },
@@ -17,11 +18,20 @@ const actions = [
 ];
 
 function Navbar() {
+  const { auth, showSignIn } = useContext(AuthContext);
+
   const navigate = useNavigate();
-  const [open, setOpen] = React.useState(false);
+
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleLinkClick = (destination: string) => {
+
+  const handleLinkClick = (destination: string, name: string) => {
+    if (name === "User Page" && !auth.isSignedIn) {
+      handleClose();
+      showSignIn();
+      return;
+    }
     handleClose();
     navigate(destination);
   };
@@ -41,7 +51,7 @@ function Navbar() {
           key={action.name}
           icon={action.icon}
           tooltipTitle={action.name}
-          onClick={() => handleLinkClick(action.to)}
+          onClick={() => handleLinkClick(action.to, action.name)}
           sx={{
             backgroundColor: "#29def0",
             "&:hover": {

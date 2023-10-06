@@ -52,8 +52,8 @@ function AuthProvider({ children }: IAuthProviderProps) {
   };
   const showSignUp = () => {
     setShow({
-      signInForm: true,
-      signUpForm: false,
+      signInForm: false,
+      signUpForm: true,
     });
   };
   const hideForms = () => {
