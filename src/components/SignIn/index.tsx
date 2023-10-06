@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -15,11 +15,40 @@ import {
   modalP,
 } from "../../MUIstyles/forms";
 import { AuthContext } from "../../AuthContext";
+import { signInWithGoogle, signInWithEmail } from "../../firebase-config";
+import { useNavigate } from "react-router";
 
 function SignIn() {
-  const { show, hideForms, showSignUp } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+  const { show, hideForms, showSignUp, signIn } = useContext(AuthContext);
   const handleClose = () => hideForms();
   const handleSignUpClick = () => showSignUp();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const user = await signInWithGoogle();
+      signIn(user);
+      hideForms();
+      navigate("/profile");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleEmailSignIn = async () => {
+    try {
+      const email = emailRef.current!.value;
+      const password = passwordRef.current!.value;
+      const user = await signInWithEmail(email, password);
+      signIn(user);
+      hideForms();
+      navigate("/profile");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Modal
@@ -39,6 +68,7 @@ function SignIn() {
           id="email"
           name="email"
           type="email"
+          inputRef={emailRef}
         />
         <CustomTextField
           label="Password"
@@ -46,8 +76,13 @@ function SignIn() {
           id="password"
           name="password"
           type="password"
+          inputRef={passwordRef}
         />
-        <Button variant="outlined" sx={{ ...modalBtn, marginBottom: "10px" }}>
+        <Button
+          variant="outlined"
+          sx={{ ...modalBtn, marginBottom: "10px" }}
+          onClick={handleEmailSignIn}
+        >
           Sign In
         </Button>
         <p style={modalP}>Don't have an account?</p>
@@ -59,7 +94,7 @@ function SignIn() {
           {"Sign Up"}
         </Link>
         <p style={modalP}>Or</p>
-        <Button sx={modalBtn} variant="outlined">
+        <Button sx={modalBtn} variant="outlined" onClick={handleGoogleSignIn}>
           <GoogleIcon sx={{ marginRight: "5px" }} />
           Continue with Google
         </Button>

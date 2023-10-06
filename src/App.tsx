@@ -1,4 +1,5 @@
 import "./App.css";
+import { useContext } from "react";
 import Home from "./pages/Home";
 import Trending from "./pages/Trending";
 import About from "./pages/About";
@@ -11,7 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
-import { AuthProvider } from "./AuthContext";
+import { AuthContext } from "./AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -23,27 +24,29 @@ const theme = createTheme({
 });
 
 function App() {
+  const { auth } = useContext(AuthContext);
   return (
     <>
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<UserPage />}>
-              <Route index element={<Explore />} />
-              <Route path="explore" element={<Explore />} />
-              <Route path="mybooks" element={<MyBooks />} />
-              <Route path="wishlist" element={<Wishlist />} />
-            </Route>
-            <Route path="/trending" element={<Trending />} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-          <SignIn />
-          <SignUp />
-        </ThemeProvider>
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/profile"
+            element={auth.isSignedIn ? <UserPage /> : <Home />}
+          >
+            <Route index element={<Explore />} />
+            <Route path="explore" element={<Explore />} />
+            <Route path="mybooks" element={<MyBooks />} />
+            <Route path="wishlist" element={<Wishlist />} />
+          </Route>
+          <Route path="/trending" element={<Trending />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+        <SignIn />
+        <SignUp />
+      </ThemeProvider>
     </>
   );
 }

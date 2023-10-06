@@ -37,6 +37,7 @@ function AuthProvider({ children }: IAuthProviderProps) {
       user,
     });
   };
+
   const signOut = () => {
     setAuth({
       isSignedIn: false,
