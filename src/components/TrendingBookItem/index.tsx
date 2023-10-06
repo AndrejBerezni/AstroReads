@@ -1,7 +1,7 @@
 import "./styles.css";
-import { IBookTrending } from "../../pages/Trending";
-import Button from "@mui/material/Button";
 import Badge from "@mui/material/Badge";
+import Button from "@mui/material/Button";
+import { IBookTrending } from "../../pages/Trending";
 import AnimationTrendingBook from "../animation/AnimationTrendingBook";
 
 interface ITrendingBookItemProps {

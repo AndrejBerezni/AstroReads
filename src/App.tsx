@@ -1,19 +1,19 @@
 import "./App.css";
 import { useContext, useEffect } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Route, Routes } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
+import Navbar from "./components/Navbar";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import { authentication } from "./firebase-config";
+import About from "./pages/About";
 import Home from "./pages/Home";
 import Trending from "./pages/Trending";
-import About from "./pages/About";
 import UserPage from "./pages/UserPage";
-import Navbar from "./components/Navbar";
 import Explore from "./pages/UserPage/Explore";
 import MyBooks from "./pages/UserPage/MyBooks/MyBooks";
 import Wishlist from "./pages/UserPage/Wishlist/Wishlist";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Route, Routes } from "react-router-dom";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
-import { AuthContext } from "./AuthContext";
-import { authentication } from "./firebase-config";
 
 const theme = createTheme({
   palette: {

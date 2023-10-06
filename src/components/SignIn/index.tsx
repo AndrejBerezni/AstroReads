@@ -1,12 +1,14 @@
 import { useContext, useRef } from "react";
-import Modal from "@mui/material/Modal";
+import GoogleIcon from "@mui/icons-material/Google";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import { CustomTextField } from "../../MUIstyles/userpage";
 import Link from "@mui/material/Link";
-import GoogleIcon from "@mui/icons-material/Google";
+import Modal from "@mui/material/Modal";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../../AuthContext";
+import { signInWithGoogle, signInWithEmail } from "../../firebase-config";
 import {
   modalBox,
   modalHeader,
@@ -14,9 +16,7 @@ import {
   modalAvatar,
   modalP,
 } from "../../MUIstyles/forms";
-import { AuthContext } from "../../AuthContext";
-import { signInWithGoogle, signInWithEmail } from "../../firebase-config";
-import { useNavigate } from "react-router";
+import { CustomTextField } from "../../MUIstyles/userpage";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -29,9 +29,11 @@ function SignIn() {
   const handleGoogleSignIn = async () => {
     try {
       const user = await signInWithGoogle();
-      signIn(user);
-      hideForms();
-      navigate("/profile");
+      if (user !== undefined && user !== "") {
+        signIn(user);
+        hideForms();
+        navigate("/profile");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -42,9 +44,11 @@ function SignIn() {
       const email = emailRef.current!.value;
       const password = passwordRef.current!.value;
       const user = await signInWithEmail(email, password);
-      signIn(user);
-      hideForms();
-      navigate("/profile");
+      if (user !== undefined && user !== "") {
+        signIn(user);
+        hideForms();
+        navigate("/profile");
+      }
     } catch (error) {
       console.error(error);
     }

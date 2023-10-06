@@ -2,11 +2,11 @@ import { useState, ChangeEvent } from "react";
 import Box from "@mui/material/Box";
 import axios from "axios";
 import { debounce } from "lodash";
+import SearchResult from "../../../components/SearchResult";
 import {
   CustomTextField,
   bookContainerStyle,
 } from "../../../MUIstyles/userpage";
-import SearchResult from "../../../components/SearchResult";
 
 interface IBook {
   id: string;

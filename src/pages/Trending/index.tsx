@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import TrendingBookItem from "../../components/TrendingBookItem";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import AnimationFadeIn from "../../components/animation/AnimationFadeIn";
+import TrendingBookItem from "../../components/TrendingBookItem";
 import {
   sectionContainerStyle,
   trendingContainerStyle,
@@ -30,7 +30,7 @@ function Trending() {
       setBooks: (books: IBookTrending[]) => void
     ) => {
       try {
-        const response: AxiosResponse<any, any> = await axios.get(
+        const response = await axios.get(
           `https://api.nytimes.com/svc/books/v3/lists/current/${list}.json?api-key=${nyTimesApiKey}`
         );
         const data = response.data.results.books.slice(0, 10);

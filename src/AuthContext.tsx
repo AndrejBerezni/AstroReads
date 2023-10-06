@@ -9,7 +9,9 @@ const AuthContext = createContext({
     signInForm: false,
     signUpForm: false,
   },
-  signIn: (user: string) => {},
+  signIn: (user: string) => {
+    console.log(user);
+  },
   signOut: () => {},
   showSignIn: () => {},
   showSignUp: () => {},

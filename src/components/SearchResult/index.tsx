@@ -1,17 +1,17 @@
 import { useState } from "react";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
-import { IBook } from "../../pages/UserPage/Explore";
-import missingImage from "../../assets/missingimage.png";
-import Popover from "@mui/material/Popover";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import missingImage from "../../assets/missingimage.png";
+import { IBook } from "../../pages/UserPage/Explore";
 
 interface ISearchResultProps {
   book: IBook;

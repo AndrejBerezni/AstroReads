@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import HomeIcon from "@mui/icons-material/Home";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
 import InfoIcon from "@mui/icons-material/Info";
 import MenuIcon from "@mui/icons-material/Menu";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import SpeedDial from "@mui/material/SpeedDial";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";

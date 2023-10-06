@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import homeImage from "../../assets/astroreadshomeimage-nobg.png";
 import "./styles.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import homeImage from "../../assets/astroreadshomeimage-nobg.png";
+import { AuthContext } from "../../AuthContext";
 import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeInFromAbove";
 import AnimationFadeInFromBelow from "../../components/animation/AnimationFadeInFromBelow";
 import AnimationFadeInFromBelowDelay from "../../components/animation/AnimationFadeInFromBelowDelay";
 import { mainContainerStyle } from "../../MUIstyles/homeabout";
-import { AuthContext } from "../../AuthContext";
 
 function Home() {
   const { auth, showSignIn } = useContext(AuthContext);

@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
-import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 import { Outlet } from "react-router";
 import { Link, useLocation } from "react-router-dom";
-import { tabStyle, userPageBoxStyle } from "../../MUIstyles/userpage";
 import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeInFromAbove";
+import { tabStyle, userPageBoxStyle } from "../../MUIstyles/userpage";
 
 function UserPage() {
   const location = useLocation();

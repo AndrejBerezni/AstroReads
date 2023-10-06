@@ -1,14 +1,14 @@
 import { useContext, useRef } from "react";
-import Modal from "@mui/material/Modal";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import { CustomTextField } from "../../MUIstyles/userpage";
-import { modalBox, modalHeader, modalBtn } from "../../MUIstyles/forms";
+import Modal from "@mui/material/Modal";
+import { useNavigate } from "react-router";
 import { AuthContext } from "../../AuthContext";
 import { signUpWithEmail } from "../../firebase-config";
-import { useNavigate } from "react-router";
+import { modalBox, modalHeader, modalBtn } from "../../MUIstyles/forms";
+import { CustomTextField } from "../../MUIstyles/userpage";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -28,9 +28,11 @@ function SignUp() {
       const password = passwordRef.current!.value;
       console.log(email, password);
       const user = await signUpWithEmail(email, password);
-      signIn(user);
-      hideForms();
-      navigate("/profile");
+      if (user !== undefined && user !== "") {
+        signIn(user);
+        hideForms();
+        navigate("/profile");
+      }
     } catch (error) {
       console.error(error);
     }

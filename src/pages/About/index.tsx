@@ -1,8 +1,8 @@
-import aboutImage from "../../assets/about-img.png";
-import "./styles.css";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import aboutImage from "../../assets/about-img.png";
+import "./styles.css";
 import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeInFromAbove";
 import AnimationFadeInFromBelow from "../../components/animation/AnimationFadeInFromBelow";
 import { mainContainerStyle } from "../../MUIstyles/homeabout";

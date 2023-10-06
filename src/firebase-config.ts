@@ -36,7 +36,7 @@ const signInWithGoogle = async () => {
     const result = await signInWithPopup(authentication, provider);
     return result.user.uid;
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 };
 
@@ -50,7 +50,7 @@ const signUpWithEmail = async (email: string, password: string) => {
     );
     return newUser.user.uid;
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 };
 
@@ -64,7 +64,7 @@ const signInWithEmail = async (email: string, password: string) => {
     );
     return user.user.uid;
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 };
 
