@@ -6,9 +6,11 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import InfoIcon from "@mui/icons-material/Info";
 import MenuIcon from "@mui/icons-material/Menu";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
+import { signOutUser } from "../../firebase-config";
 
 const actions = [
   { icon: <HomeIcon />, name: "Home", to: "/" },
@@ -39,7 +41,7 @@ function Navbar() {
   return (
     <SpeedDial
       ariaLabel="SpeedDial controlled open example"
-      sx={{ position: "fixed", top: "32px", left: "32px" }}
+      sx={{ position: "fixed", top: "32px", left: "20px" }}
       icon={<MenuIcon />}
       onClose={handleClose}
       onOpen={handleOpen}
@@ -61,6 +63,20 @@ function Navbar() {
           }}
         />
       ))}
+      {auth.isSignedIn && (
+        <SpeedDialAction
+          icon={<ExitToAppIcon />}
+          tooltipTitle="Sign Out"
+          onClick={signOutUser}
+          sx={{
+            backgroundColor: "#29def0",
+            "&:hover": {
+              backgroundColor: "#f00a60",
+              color: "#29def0",
+            },
+          }}
+        />
+      )}
     </SpeedDial>
   );
 }
