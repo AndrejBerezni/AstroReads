@@ -9,6 +9,7 @@ import MyBooks from "./pages/UserPage/MyBooks/MyBooks";
 import Wishlist from "./pages/UserPage/Wishlist/Wishlist";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
+import SignIn from "./components/SignIn";
 
 const theme = createTheme({
   palette: {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Home />} />
         </Routes>
+        <SignIn />
       </ThemeProvider>
     </>
   );
