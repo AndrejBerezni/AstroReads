@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import { AuthProvider, AuthContext } from "./AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -25,21 +26,23 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<UserPage />}>
-            <Route index element={<Explore />} />
-            <Route path="explore" element={<Explore />} />
-            <Route path="mybooks" element={<MyBooks />} />
-            <Route path="wishlist" element={<Wishlist />} />
-          </Route>
-          <Route path="/trending" element={<Trending />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-        <SignIn />
-        <SignUp />
+        <AuthProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<UserPage />}>
+              <Route index element={<Explore />} />
+              <Route path="explore" element={<Explore />} />
+              <Route path="mybooks" element={<MyBooks />} />
+              <Route path="wishlist" element={<Wishlist />} />
+            </Route>
+            <Route path="/trending" element={<Trending />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+          <SignIn />
+          <SignUp />
+        </AuthProvider>
       </ThemeProvider>
     </>
   );

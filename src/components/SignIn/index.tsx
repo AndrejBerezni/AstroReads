@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -14,14 +14,15 @@ import {
   modalAvatar,
   modalP,
 } from "../../MUIstyles/forms";
+import { AuthContext } from "../../AuthContext";
 
 function SignIn() {
-  const [open, setOpen] = useState(true);
-  const handleClose = () => setOpen(false);
+  const { show, hideForms } = useContext(AuthContext);
+  const handleClose = () => hideForms();
 
   return (
     <Modal
-      open={open}
+      open={show.signInForm}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
