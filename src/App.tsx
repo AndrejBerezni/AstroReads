@@ -10,6 +10,7 @@ import Wishlist from "./pages/UserPage/Wishlist/Wishlist";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
 import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
 
 const theme = createTheme({
   palette: {
@@ -38,6 +39,7 @@ function App() {
           <Route path="*" element={<Home />} />
         </Routes>
         <SignIn />
+        <SignUp />
       </ThemeProvider>
     </>
   );

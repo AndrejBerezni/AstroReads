@@ -5,18 +5,10 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { CustomTextField } from "../../MUIstyles/userpage";
-import Link from "@mui/material/Link";
-import GoogleIcon from "@mui/icons-material/Google";
-import {
-  modalBox,
-  modalHeader,
-  modalBtn,
-  modalAvatar,
-  modalP,
-} from "../../MUIstyles/forms";
+import { modalBox, modalHeader, modalBtn } from "../../MUIstyles/forms";
 
-function SignIn() {
-  const [open, setOpen] = useState(true);
+function SignUp() {
+  const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
 
   return (
@@ -27,10 +19,10 @@ function SignIn() {
       aria-describedby="modal-modal-description"
     >
       <Box sx={modalBox}>
-        <Avatar sx={modalAvatar}>
+        <Avatar sx={{ m: 0, bgcolor: "var(--primary)", color: "#242424" }}>
           <RocketLaunchIcon />
         </Avatar>
-        <h3 style={modalHeader}>Sign in</h3>
+        <h3 style={modalHeader}>Sign up</h3>
         <CustomTextField
           label="Email"
           required
@@ -45,21 +37,19 @@ function SignIn() {
           name="password"
           type="password"
         />
-        <Button variant="outlined" sx={{ ...modalBtn, marginBottom: "10px" }}>
-          Sign In
-        </Button>
-        <p style={modalP}>Don't have an account?</p>
-        <Link href="#" sx={{ fontFamily: "var(--text-font)" }}>
-          {"Sign Up"}
-        </Link>
-        <p style={modalP}>Or</p>
-        <Button sx={modalBtn} variant="outlined">
-          <GoogleIcon sx={{ marginRight: "5px" }} />
-          Continue with Google
+        <CustomTextField
+          label="Confirm Password"
+          required
+          id="confirm-password"
+          name="confirm-password"
+          type="confirm-password"
+        />
+        <Button variant="outlined" sx={modalBtn}>
+          Sign Up
         </Button>
       </Box>
     </Modal>
   );
 }
 
-export default SignIn;
+export default SignUp;

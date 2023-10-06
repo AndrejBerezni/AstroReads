@@ -45,8 +45,8 @@ h6:hover {
 
 @media (max-width: 768px) {
   body {
-    background-size: auto;
-    background-position: top;
+    background-size: cover;
+    background-position: center;
     background-repeat: repeat;
   }
 }
