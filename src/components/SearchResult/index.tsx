@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
@@ -12,6 +12,8 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import missingImage from "../../assets/missingimage.png";
 import { IBook } from "../../pages/UserPage/Explore";
+import { AuthContext } from "../../AuthContext";
+import { addBook } from "../../firebase-config";
 
 interface ISearchResultProps {
   book: IBook;
@@ -26,6 +28,8 @@ const cardButtonStyle = {
 };
 
 function SearchResult({ book }: ISearchResultProps) {
+  const { auth } = useContext(AuthContext);
+
   //handling description popover:
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -92,10 +96,18 @@ function SearchResult({ book }: ISearchResultProps) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to wishlist" sx={cardButtonStyle}>
+          <IconButton
+            aria-label="add to wishlist"
+            sx={cardButtonStyle}
+            onClick={async () => await addBook(auth.user, book, "wishlist")}
+          >
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="add to your collection" sx={cardButtonStyle}>
+          <IconButton
+            aria-label="add to your collection"
+            sx={cardButtonStyle}
+            onClick={async () => await addBook(auth.user, book, "books")}
+          >
             <AddBoxIcon />
           </IconButton>
           <IconButton

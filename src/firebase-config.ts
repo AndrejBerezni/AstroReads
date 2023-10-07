@@ -20,7 +20,10 @@ import {
   collection,
   query,
   where,
+  arrayUnion,
 } from "firebase/firestore";
+
+import { IBook } from "./pages/UserPage/Explore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API,
@@ -94,14 +97,7 @@ const signOutUser = () => {
   signOut(getAuth());
 };
 
-export {
-  authentication,
-  signInWithGoogle,
-  signUpWithEmail,
-  signInWithEmail,
-  signOutUser,
-};
-
+//Create user document in Firestore
 const createUserDocument = async (user: string) => {
   await setDoc(doc(db, "users", user), {
     books: [],
@@ -109,8 +105,34 @@ const createUserDocument = async (user: string) => {
   });
 };
 
+//Check if user document exists in Firestore
 const checkIfUserDocExists = async (user: string) => {
   const userRef = doc(db, "users", user);
   const userSnapshot = await getDoc(userRef);
   return userSnapshot.exists() ? true : false;
+};
+
+//Check if book is already added to the list - removing this because Firebase handles this automatically
+// const checkIfBookExists = async (user: string, book: IBook, list: string) => {
+//   const userRef = doc(db, "users", user);
+//   const userSnapshot = await getDoc(userRef);
+//   const listToCheck = userSnapshot.data()![list];
+//   return listToCheck.some((el: IBook) => el.id === book.id);
+// };
+
+//Add book - if book already exists, it won't be added (handled by Firestore)
+const addBook = async (user: string, book: IBook, list: string) => {
+  const userRef = doc(db, "users", user);
+  await updateDoc(userRef, {
+    [list]: arrayUnion(book),
+  });
+};
+
+export {
+  authentication,
+  signInWithGoogle,
+  signUpWithEmail,
+  signInWithEmail,
+  signOutUser,
+  addBook,
 };
