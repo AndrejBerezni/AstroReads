@@ -16,6 +16,7 @@ import {
   updateDoc,
   doc,
   arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 
 import { IBook } from "./pages/UserPage/Explore";
@@ -115,6 +116,21 @@ const addBook = async (user: string, book: IBook, list: string) => {
   });
 };
 
+//Delete book
+const deleteBook = async (user: string, book: IBook, list: string) => {
+  const userRef = doc(db, "users", user);
+  await updateDoc(userRef, {
+    [list]: arrayRemove(book),
+  });
+};
+
+//Get books
+const getBooks = async (user: string, list: string) => {
+  const userRef = doc(db, "users", user);
+  const userSnapshot = await getDoc(userRef);
+  return userSnapshot.data()![list];
+};
+
 export {
   authentication,
   signInWithGoogle,
@@ -122,4 +138,6 @@ export {
   signInWithEmail,
   signOutUser,
   addBook,
+  deleteBook,
+  getBooks,
 };

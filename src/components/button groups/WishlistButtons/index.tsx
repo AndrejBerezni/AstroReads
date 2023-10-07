@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { addBook } from "../../../firebase-config";
+import { addBook, deleteBook } from "../../../firebase-config";
 import { AuthContext } from "../../../AuthContext";
 import { IBook } from "../../../pages/UserPage/Explore";
 import { cardButtonStyle } from "../../../MUIstyles/userpage";
@@ -39,14 +39,17 @@ function WishlistButtons({ book }: IWishlistButtonProps) {
         <IconButton
           aria-label="add to your collection"
           sx={cardButtonStyle}
-          onClick={async () => await addBook(auth.user, book, "books")}
+          onClick={async () => {
+            await addBook(auth.user, book, "books");
+            await deleteBook(auth.user, book, "wishlist");
+          }}
         >
           <AddBoxIcon />
         </IconButton>
         <IconButton
           aria-label="remove from wishlist"
           sx={cardButtonStyle}
-          //   onClick={}
+          onClick={async () => await deleteBook(auth.user, book, "wishlist")}
         >
           <RemoveCircleOutlineIcon />
         </IconButton>
