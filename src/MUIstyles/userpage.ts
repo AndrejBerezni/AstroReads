@@ -47,4 +47,18 @@ const bookContainerStyle = {
   paddingBottom: "20px",
 };
 
-export { tabStyle, userPageBoxStyle, CustomTextField, bookContainerStyle };
+const cardButtonStyle = {
+  color: "primary.main",
+  "&:hover": {
+    color: "#f00a60",
+    filter: "drop-shadow(1px 1px 2px #29def0)",
+  },
+};
+
+export {
+  tabStyle,
+  userPageBoxStyle,
+  CustomTextField,
+  bookContainerStyle,
+  cardButtonStyle,
+};

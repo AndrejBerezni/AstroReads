@@ -11,15 +11,10 @@ import {
 } from "firebase/auth";
 import {
   getFirestore,
-  getDocs,
   getDoc,
   setDoc,
-  deleteDoc,
   updateDoc,
   doc,
-  collection,
-  query,
-  where,
   arrayUnion,
 } from "firebase/firestore";
 
@@ -111,14 +106,6 @@ const checkIfUserDocExists = async (user: string) => {
   const userSnapshot = await getDoc(userRef);
   return userSnapshot.exists() ? true : false;
 };
-
-//Check if book is already added to the list - removing this because Firebase handles this automatically
-// const checkIfBookExists = async (user: string, book: IBook, list: string) => {
-//   const userRef = doc(db, "users", user);
-//   const userSnapshot = await getDoc(userRef);
-//   const listToCheck = userSnapshot.data()![list];
-//   return listToCheck.some((el: IBook) => el.id === book.id);
-// };
 
 //Add book - if book already exists, it won't be added (handled by Firestore)
 const addBook = async (user: string, book: IBook, list: string) => {

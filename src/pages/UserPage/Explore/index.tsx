@@ -2,7 +2,8 @@ import { useState, ChangeEvent } from "react";
 import Box from "@mui/material/Box";
 import axios from "axios";
 import { debounce } from "lodash";
-import SearchResult from "../../../components/SearchResult";
+import BookCard from "../../../components/BookCard";
+import WishlistButtons from "../../../components/button groups/WishlistButtons";
 import {
   CustomTextField,
   bookContainerStyle,
@@ -63,7 +64,11 @@ function Explore() {
       />
       <Box sx={bookContainerStyle}>
         {input.length > 2 && //This will clean list if user deletes input, instead of keeping results for first 3 letters
-          results.map((item) => <SearchResult book={item} />)}
+          results.map((item) => (
+            <BookCard book={item}>
+              <WishlistButtons book={item} />
+            </BookCard>
+          ))}
       </Box>
     </Box>
   );
