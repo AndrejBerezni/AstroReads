@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import InfoIcon from "@mui/icons-material/Info";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import CardActions from "@mui/material/CardActions";
@@ -7,16 +6,15 @@ import Paper from "@mui/material/Paper";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { addBook } from "../../../firebase-config";
 import { AuthContext } from "../../../AuthContext";
 import { IBook } from "../../../pages/UserPage/Explore";
 import { cardButtonStyle } from "../../../MUIstyles/userpage";
 
-interface IWishlistButtonProps {
+interface IMyBooksButtonProps {
   book: IBook;
 }
 
-function WishlistButtons({ book }: IWishlistButtonProps) {
+function MyBooksButtons({ book }: IMyBooksButtonProps) {
   const { auth } = useContext(AuthContext);
 
   //handling description popover:
@@ -37,14 +35,7 @@ function WishlistButtons({ book }: IWishlistButtonProps) {
     <>
       <CardActions disableSpacing>
         <IconButton
-          aria-label="add to your collection"
-          sx={cardButtonStyle}
-          onClick={async () => await addBook(auth.user, book, "books")}
-        >
-          <AddBoxIcon />
-        </IconButton>
-        <IconButton
-          aria-label="remove from wishlist"
+          aria-label="delete book"
           sx={cardButtonStyle}
           //   onClick={}
         >
@@ -85,4 +76,4 @@ function WishlistButtons({ book }: IWishlistButtonProps) {
   );
 }
 
-export default WishlistButtons;
+export default MyBooksButtons;

@@ -47,6 +47,18 @@ const bookContainerStyle = {
   paddingBottom: "20px",
 };
 
+const bookCardStyle = {
+  width: 280,
+  height: 380,
+  padding: "10px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "space-around",
+  backgroundColor: "#242424",
+  boxShadow: "0px 0px 14px #29def0",
+};
+
 const cardButtonStyle = {
   color: "primary.main",
   "&:hover": {
@@ -60,5 +72,6 @@ export {
   userPageBoxStyle,
   CustomTextField,
   bookContainerStyle,
+  bookCardStyle,
   cardButtonStyle,
 };

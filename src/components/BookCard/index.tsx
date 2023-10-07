@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import missingImage from "../../assets/missingimage.png";
 import { IBook } from "../../pages/UserPage/Explore";
+import { bookCardStyle } from "../../MUIstyles/userpage";
 
 interface ISearchResultProps {
   book: IBook;
@@ -22,19 +23,7 @@ function BookCard({ book, children }: ISearchResultProps) {
 
   return (
     <div>
-      <Card
-        sx={{
-          width: 280,
-          height: 380,
-          padding: "10px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "space-around",
-          backgroundColor: "#242424",
-          boxShadow: "0px 0px 14px #29def0",
-        }}
-      >
+      <Card sx={bookCardStyle}>
         <CardMedia
           component="img"
           sx={{

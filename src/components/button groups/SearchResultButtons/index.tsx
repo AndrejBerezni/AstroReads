@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import CardActions from "@mui/material/CardActions";
 import Paper from "@mui/material/Paper";
 import Popover from "@mui/material/Popover";
@@ -12,11 +12,11 @@ import { AuthContext } from "../../../AuthContext";
 import { IBook } from "../../../pages/UserPage/Explore";
 import { cardButtonStyle } from "../../../MUIstyles/userpage";
 
-interface IWishlistButtonProps {
+interface ISearchResultsButtonProps {
   book: IBook;
 }
 
-function WishlistButtons({ book }: IWishlistButtonProps) {
+function SearchResultsButtons({ book }: ISearchResultsButtonProps) {
   const { auth } = useContext(AuthContext);
 
   //handling description popover:
@@ -37,18 +37,18 @@ function WishlistButtons({ book }: IWishlistButtonProps) {
     <>
       <CardActions disableSpacing>
         <IconButton
+          aria-label="add to wishlist"
+          sx={cardButtonStyle}
+          onClick={async () => await addBook(auth.user, book, "wishlist")}
+        >
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton
           aria-label="add to your collection"
           sx={cardButtonStyle}
           onClick={async () => await addBook(auth.user, book, "books")}
         >
           <AddBoxIcon />
-        </IconButton>
-        <IconButton
-          aria-label="remove from wishlist"
-          sx={cardButtonStyle}
-          //   onClick={}
-        >
-          <RemoveCircleOutlineIcon />
         </IconButton>
         <IconButton
           aria-label="read description"
@@ -85,4 +85,4 @@ function WishlistButtons({ book }: IWishlistButtonProps) {
   );
 }
 
-export default WishlistButtons;
+export default SearchResultsButtons;
