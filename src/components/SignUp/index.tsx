@@ -26,7 +26,6 @@ function SignUp() {
     try {
       const email = emailRef.current!.value;
       const password = passwordRef.current!.value;
-      console.log(email, password);
       const user = await signUpWithEmail(email, password);
       if (user !== undefined && user !== "") {
         signIn(user);

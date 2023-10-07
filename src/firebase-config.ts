@@ -9,6 +9,18 @@ import {
   setPersistence,
   browserSessionPersistence,
 } from "firebase/auth";
+import {
+  getFirestore,
+  getDocs,
+  getDoc,
+  setDoc,
+  deleteDoc,
+  updateDoc,
+  doc,
+  collection,
+  query,
+  where,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API,
@@ -29,12 +41,19 @@ setPersistence(authentication, browserSessionPersistence)
     console.error("Error enabling persistence:", error);
   });
 
+const db = getFirestore(app);
+
 //Google sign-in
 const provider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(authentication, provider);
-    return result.user.uid;
+    const newUser = await signInWithPopup(authentication, provider);
+    const newUserId = newUser.user.uid;
+    const userExists = await checkIfUserDocExists(newUserId);
+    if (!userExists) {
+      await createUserDocument(newUserId);
+    }
+    return newUserId;
   } catch (error) {
     console.error(error);
   }
@@ -48,7 +67,9 @@ const signUpWithEmail = async (email: string, password: string) => {
       email,
       password
     );
-    return newUser.user.uid;
+    const newUserId = newUser.user.uid;
+    createUserDocument(newUserId);
+    return newUserId;
   } catch (error) {
     console.error(error);
   }
@@ -79,4 +100,17 @@ export {
   signUpWithEmail,
   signInWithEmail,
   signOutUser,
+};
+
+const createUserDocument = async (user: string) => {
+  await setDoc(doc(db, "users", user), {
+    books: [],
+    wishlist: [],
+  });
+};
+
+const checkIfUserDocExists = async (user: string) => {
+  const userRef = doc(db, "users", user);
+  const userSnapshot = await getDoc(userRef);
+  return userSnapshot.exists() ? true : false;
 };
