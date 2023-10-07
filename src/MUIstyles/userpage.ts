@@ -44,7 +44,7 @@ const bookContainerStyle = {
   flexWrap: "wrap",
   gap: "20px",
   justifyContent: "space-around",
-  paddingBottom: "20px",
+  padding: "20px",
 };
 
 const bookCardStyle = {

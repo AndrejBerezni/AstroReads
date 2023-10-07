@@ -6,6 +6,7 @@ import Paper from "@mui/material/Paper";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
+import { deleteBook } from "../../../firebase-config";
 import { AuthContext } from "../../../AuthContext";
 import { IBook } from "../../../pages/UserPage/Explore";
 import { cardButtonStyle } from "../../../MUIstyles/userpage";
@@ -37,7 +38,7 @@ function MyBooksButtons({ book }: IMyBooksButtonProps) {
         <IconButton
           aria-label="delete book"
           sx={cardButtonStyle}
-          //   onClick={}
+          onClick={async () => await deleteBook(auth.user, book, "books")}
         >
           <RemoveCircleOutlineIcon />
         </IconButton>

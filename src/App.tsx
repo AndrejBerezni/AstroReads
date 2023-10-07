@@ -12,8 +12,8 @@ import Home from "./pages/Home";
 import Trending from "./pages/Trending";
 import UserPage from "./pages/UserPage";
 import Explore from "./pages/UserPage/Explore";
-import MyBooks from "./pages/UserPage/MyBooks/MyBooks";
-import Wishlist from "./pages/UserPage/Wishlist/Wishlist";
+import MyBooks from "./pages/UserPage/MyBooks";
+import Wishlist from "./pages/UserPage/Wishlist";
 
 const theme = createTheme({
   palette: {

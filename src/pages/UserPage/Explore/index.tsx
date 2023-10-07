@@ -65,7 +65,7 @@ function Explore() {
       <Box sx={bookContainerStyle}>
         {input.length > 2 && //This will clean list if user deletes input, instead of keeping results for first 3 letters
           results.map((item) => (
-            <BookCard book={item}>
+            <BookCard key={item.id} book={item}>
               <SearchResultsButtons book={item} />
             </BookCard>
           ))}
