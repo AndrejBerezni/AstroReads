@@ -38,6 +38,11 @@ function Navbar() {
     navigate(destination);
   };
 
+  const handleSignOut = () => {
+    signOutUser();
+    navigate("/");
+  };
+
   return (
     <SpeedDial
       ariaLabel="SpeedDial controlled open example"
@@ -67,7 +72,7 @@ function Navbar() {
         <SpeedDialAction
           icon={<ExitToAppIcon />}
           tooltipTitle="Sign Out"
-          onClick={signOutUser}
+          onClick={handleSignOut}
           sx={{
             backgroundColor: "#29def0",
             "&:hover": {
