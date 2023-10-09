@@ -31,4 +31,23 @@ const modalP = {
   color: "var(--secondary)",
   fontFamily: "var(--text-font)",
 };
-export { modalBox, modalHeader, modalBtn, modalAvatar, modalP };
+
+const alertStyle = {
+  backgroundColor: "var(--primary)",
+  fontFamily: "var(--text-font)",
+  color: "var(--secondary)",
+};
+
+const alertTitleStyle = {
+  fontFamily: "var(--text-font)",
+  fontWeight: "bold",
+};
+export {
+  modalBox,
+  modalHeader,
+  modalBtn,
+  modalAvatar,
+  modalP,
+  alertStyle,
+  alertTitleStyle,
+};

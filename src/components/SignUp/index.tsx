@@ -26,7 +26,8 @@ function SignUp() {
 
   const handleSignUp = async () => {
     if (passwordRef.current!.value !== confirmPasswordRef.current!.value) {
-      console.log("Passwords do not match");
+      setAlertText("Passwords do not match");
+      setShowAlert(true);
       return;
     }
     try {
