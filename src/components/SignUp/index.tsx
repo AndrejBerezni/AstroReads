@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -8,15 +8,21 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../../AuthContext";
 import { signUpWithEmail } from "../../firebase-config";
 import { modalBox, modalHeader, modalBtn } from "../../MUIstyles/forms";
+import formatFirebaseError from "../../utilities/formatFirebaseError";
+import AuthAlert from "../AuthAlert/AuthAlert";
 import { CustomTextField } from "../../MUIstyles/userpage";
 
 function SignUp() {
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertText, setAlertText] = useState("");
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const confirmPasswordRef = useRef<HTMLInputElement | null>(null);
   const { show, hideForms, signIn } = useContext(AuthContext);
+
   const handleClose = () => hideForms();
+  const closeAlert = () => setShowAlert(false);
 
   const handleSignUp = async () => {
     if (passwordRef.current!.value !== confirmPasswordRef.current!.value) {
@@ -32,8 +38,10 @@ function SignUp() {
         hideForms();
         navigate("/profile");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      const errorMessage = formatFirebaseError(error.message);
+      setAlertText(errorMessage);
+      setShowAlert(true);
     }
   };
 
@@ -76,6 +84,9 @@ function SignUp() {
         <Button variant="outlined" sx={modalBtn} onClick={handleSignUp}>
           Sign Up
         </Button>
+        {showAlert && (
+          <AuthAlert alertText={alertText} handleClose={closeAlert} />
+        )}
       </Box>
     </Modal>
   );

@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import Avatar from "@mui/material/Avatar";
@@ -16,15 +16,21 @@ import {
   modalAvatar,
   modalP,
 } from "../../MUIstyles/forms";
+import formatFirebaseError from "../../utilities/formatFirebaseError";
+import AuthAlert from "../AuthAlert/AuthAlert";
 import { CustomTextField } from "../../MUIstyles/userpage";
 
 function SignIn() {
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertText, setAlertText] = useState("");
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const { show, hideForms, showSignUp, signIn } = useContext(AuthContext);
+
   const handleClose = () => hideForms();
   const handleSignUpClick = () => showSignUp();
+  const closeAlert = () => setShowAlert(false);
 
   const handleGoogleSignIn = async () => {
     try {
@@ -34,8 +40,10 @@ function SignIn() {
         hideForms();
         navigate("/profile");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      const errorMessage = formatFirebaseError(error.message);
+      setAlertText(errorMessage);
+      setShowAlert(true);
     }
   };
 
@@ -49,8 +57,10 @@ function SignIn() {
         hideForms();
         navigate("/profile");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      const errorMessage = formatFirebaseError(error!.message);
+      setAlertText(errorMessage);
+      setShowAlert(true);
     }
   };
 
@@ -102,6 +112,9 @@ function SignIn() {
           <GoogleIcon sx={{ marginRight: "5px" }} />
           Continue with Google
         </Button>
+        {showAlert && (
+          <AuthAlert alertText={alertText} handleClose={closeAlert} />
+        )}
       </Box>
     </Modal>
   );

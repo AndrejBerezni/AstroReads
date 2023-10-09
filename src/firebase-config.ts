@@ -54,7 +54,7 @@ const signInWithGoogle = async () => {
     }
     return newUserId;
   } catch (error) {
-    console.error(error);
+    throw error; //throwing error again to pass it to function that uses this function
   }
 };
 
@@ -70,7 +70,7 @@ const signUpWithEmail = async (email: string, password: string) => {
     createUserDocument(newUserId);
     return newUserId;
   } catch (error) {
-    console.error(error);
+    throw error; //throwing error again to pass it to function that uses this function
   }
 };
 
@@ -84,7 +84,7 @@ const signInWithEmail = async (email: string, password: string) => {
     );
     return user.user.uid;
   } catch (error) {
-    console.error(error);
+    throw error; //throwing error again to pass it to function that uses this function
   }
 };
 
