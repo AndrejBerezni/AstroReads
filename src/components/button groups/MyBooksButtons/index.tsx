@@ -4,6 +4,7 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import CardActions from "@mui/material/CardActions";
 import Paper from "@mui/material/Paper";
 import Popover from "@mui/material/Popover";
+import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { deleteBook } from "../../../firebase-config";
@@ -35,21 +36,25 @@ function MyBooksButtons({ book }: IMyBooksButtonProps) {
   return (
     <>
       <CardActions disableSpacing>
-        <IconButton
-          aria-label="delete book"
-          sx={cardButtonStyle}
-          onClick={async () => await deleteBook(auth.user, book, "books")}
-        >
-          <RemoveCircleOutlineIcon />
-        </IconButton>
-        <IconButton
-          aria-label="read description"
-          aria-describedby={id}
-          onClick={handlePopClick}
-          sx={cardButtonStyle}
-        >
-          <InfoIcon />
-        </IconButton>
+        <Tooltip title="Remove from My Books">
+          <IconButton
+            aria-label="delete book"
+            sx={cardButtonStyle}
+            onClick={async () => await deleteBook(auth.user, book, "books")}
+          >
+            <RemoveCircleOutlineIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Description">
+          <IconButton
+            aria-label="read description"
+            aria-describedby={id}
+            onClick={handlePopClick}
+            sx={cardButtonStyle}
+          >
+            <InfoIcon />
+          </IconButton>
+        </Tooltip>
       </CardActions>
       <Popover
         id={id}

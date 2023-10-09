@@ -5,6 +5,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import CardActions from "@mui/material/CardActions";
 import Paper from "@mui/material/Paper";
 import Popover from "@mui/material/Popover";
+import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { addBook } from "../../../firebase-config";
@@ -36,28 +37,34 @@ function SearchResultsButtons({ book }: ISearchResultsButtonProps) {
   return (
     <>
       <CardActions disableSpacing>
-        <IconButton
-          aria-label="add to wishlist"
-          sx={cardButtonStyle}
-          onClick={async () => await addBook(auth.user, book, "wishlist")}
-        >
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton
-          aria-label="add to your collection"
-          sx={cardButtonStyle}
-          onClick={async () => await addBook(auth.user, book, "books")}
-        >
-          <AddBoxIcon />
-        </IconButton>
-        <IconButton
-          aria-label="read description"
-          aria-describedby={id}
-          onClick={handlePopClick}
-          sx={cardButtonStyle}
-        >
-          <InfoIcon />
-        </IconButton>
+        <Tooltip title="Add to wishlist">
+          <IconButton
+            aria-label="add to wishlist"
+            sx={cardButtonStyle}
+            onClick={async () => await addBook(auth.user, book, "wishlist")}
+          >
+            <FavoriteIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Add to My Books">
+          <IconButton
+            aria-label="add to your collection"
+            sx={cardButtonStyle}
+            onClick={async () => await addBook(auth.user, book, "books")}
+          >
+            <AddBoxIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Description">
+          <IconButton
+            aria-label="read description"
+            aria-describedby={id}
+            onClick={handlePopClick}
+            sx={cardButtonStyle}
+          >
+            <InfoIcon />
+          </IconButton>
+        </Tooltip>
       </CardActions>
       <Popover
         id={id}

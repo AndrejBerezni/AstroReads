@@ -5,6 +5,7 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import CardActions from "@mui/material/CardActions";
 import Paper from "@mui/material/Paper";
 import Popover from "@mui/material/Popover";
+import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { addBook, deleteBook } from "../../../firebase-config";
@@ -36,31 +37,37 @@ function WishlistButtons({ book }: IWishlistButtonProps) {
   return (
     <>
       <CardActions disableSpacing>
-        <IconButton
-          aria-label="add to your collection"
-          sx={cardButtonStyle}
-          onClick={async () => {
-            await addBook(auth.user, book, "books");
-            await deleteBook(auth.user, book, "wishlist");
-          }}
-        >
-          <AddBoxIcon />
-        </IconButton>
-        <IconButton
-          aria-label="remove from wishlist"
-          sx={cardButtonStyle}
-          onClick={async () => await deleteBook(auth.user, book, "wishlist")}
-        >
-          <RemoveCircleOutlineIcon />
-        </IconButton>
-        <IconButton
-          aria-label="read description"
-          aria-describedby={id}
-          onClick={handlePopClick}
-          sx={cardButtonStyle}
-        >
-          <InfoIcon />
-        </IconButton>
+        <Tooltip title="Add to My Books">
+          <IconButton
+            aria-label="add to your collection"
+            sx={cardButtonStyle}
+            onClick={async () => {
+              await addBook(auth.user, book, "books");
+              await deleteBook(auth.user, book, "wishlist");
+            }}
+          >
+            <AddBoxIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Remove from Wishlist">
+          <IconButton
+            aria-label="remove from wishlist"
+            sx={cardButtonStyle}
+            onClick={async () => await deleteBook(auth.user, book, "wishlist")}
+          >
+            <RemoveCircleOutlineIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Description">
+          <IconButton
+            aria-label="read description"
+            aria-describedby={id}
+            onClick={handlePopClick}
+            sx={cardButtonStyle}
+          >
+            <InfoIcon />
+          </IconButton>
+        </Tooltip>
       </CardActions>
       <Popover
         id={id}
