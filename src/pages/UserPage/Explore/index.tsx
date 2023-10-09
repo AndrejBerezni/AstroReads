@@ -1,9 +1,9 @@
 import { useState, ChangeEvent } from "react";
 import Box from "@mui/material/Box";
-import axios from "axios";
 import { debounce } from "lodash";
 import BookCard from "../../../components/BookCard";
 import SearchResultsButtons from "../../../components/button groups/SearchResultButtons";
+import searchBooks from "../../../api/searchBooks";
 import {
   CustomTextField,
   bookContainerStyle,
@@ -21,32 +21,17 @@ interface IBook {
 function Explore() {
   const [results, setResults] = useState<IBook[]>([]);
   const [input, setInput] = useState("");
-  const booksApiKey = import.meta.env.VITE_BOOKS_API;
 
-  const searchBook = debounce(async (searchInput: string) => {
-    try {
-      const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}&key=${booksApiKey}`
-      );
-      const items = response.data.items.map((item: any) => ({
-        id: item.id,
-        title: item.volumeInfo?.title || "Title Missing",
-        author: item.volumeInfo?.authors?.[0] || "Author Missing",
-        description: item.volumeInfo?.description || "Description Missing",
-        pages: item.volumeInfo?.pageCount || 0,
-        image: item.volumeInfo?.imageLinks?.thumbnail || "",
-      }));
-      setResults(items);
-    } catch (error) {
-      console.error(error);
-    }
+  const debouncedSearchBooks = debounce(async (searchInput) => {
+    const searchResults = await searchBooks(searchInput);
+    setResults(searchResults);
   }, 1000);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newInput = event.target.value;
     setInput(newInput);
     if (newInput.length > 2) {
-      searchBook(newInput);
+      debouncedSearchBooks(newInput);
     }
   };
 
