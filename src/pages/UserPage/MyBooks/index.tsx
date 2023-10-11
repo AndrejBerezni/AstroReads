@@ -1,18 +1,19 @@
-import { useState, useEffect, useContext } from "react";
-import Box from "@mui/material/Box";
-import { bookContainerStyle } from "../../../MUIstyles/userpage";
-import { IBook } from "../Explore";
-import BookCard from "../../../components/BookCard";
-import MyBooksButtons from "../../../components/button groups/MyBooksButtons";
-import { getBooks } from "../../../firebase-config";
-import { AuthContext } from "../../../AuthContext";
+import { useState, useEffect, useContext } from 'react';
+import Box from '@mui/material/Box';
+
+import { bookContainerStyle } from '../../../MUIstyles/userpage';
+import { IBook } from '../Explore';
+import BookCard from '../../../components/BookCard';
+import MyBooksButtons from '../../../components/button groups/MyBooksButtons';
+import { getBooks } from '../../../firebase-config';
+import { AuthContext } from '../../../AuthContext';
 
 function MyBooks() {
   const [books, setBooks] = useState<IBook[]>([]);
   const { auth } = useContext(AuthContext);
 
   const getBookList = async () => {
-    const bookList = await getBooks(auth.user, "books");
+    const bookList = await getBooks(auth.user, 'books');
     setBooks(bookList);
   };
 

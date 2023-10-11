@@ -1,11 +1,12 @@
-import { ReactNode } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import missingImage from "../../assets/missingimage.png";
-import { IBook } from "../../pages/UserPage/Explore";
-import { bookCardStyle } from "../../MUIstyles/userpage";
+import { ReactNode } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+
+import missingImage from '../../assets/missingimage.png';
+import { IBook } from '../../pages/UserPage/Explore';
+import { bookCardStyle } from '../../MUIstyles/userpage';
 
 interface ISearchResultProps {
   book: IBook;
@@ -16,7 +17,7 @@ function BookCard({ book, children }: ISearchResultProps) {
   //shorten long titles
   function shortenText(text: string) {
     if (text.length > 50) {
-      return text.substring(0, 50) + "...";
+      return text.substring(0, 50) + '...';
     }
     return text;
   }
@@ -27,8 +28,8 @@ function BookCard({ book, children }: ISearchResultProps) {
         <CardMedia
           component="img"
           sx={{
-            height: "150px",
-            width: "100px",
+            height: '150px',
+            width: '100px',
           }}
           image={book.image ? book.image : missingImage}
           alt={book.title}
@@ -38,16 +39,16 @@ function BookCard({ book, children }: ISearchResultProps) {
             variant="h4"
             color="text.secondary"
             sx={{
-              fontSize: "1.2rem",
-              color: "primary.main",
-              marginBottom: "10px",
+              fontSize: '1.2rem',
+              color: 'primary.main',
+              marginBottom: '10px',
             }}
           >
             {shortenText(book.title)}
           </Typography>
           <Typography
             variant="h5"
-            sx={{ fontSize: "1.2rem", color: "#f00a60" }}
+            sx={{ fontSize: '1.2rem', color: '#f00a60' }}
           >
             {book.author}
           </Typography>

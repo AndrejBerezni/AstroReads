@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import AnimationFadeIn from "../../components/animation/AnimationFadeIn";
-import TrendingBookItem from "../../components/TrendingBookItem";
+import { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+
+import AnimationFadeIn from '../../components/animation/AnimationFadeIn';
+import TrendingBookItem from '../../components/TrendingBookItem';
 import {
   sectionContainerStyle,
   trendingContainerStyle,
-} from "../../MUIstyles/about";
-import fetchTrendingBooks from "../../api/trendingBooks";
+} from '../../MUIstyles/about';
+import fetchTrendingBooks from '../../api/trendingBooks';
 
 interface IBookTrending {
   title: string;
@@ -27,13 +28,13 @@ function Trending() {
     const setTrendingBooks = async () => {
       try {
         const [fiction, nonfiction] = await Promise.all([
-          fetchTrendingBooks("combined-print-and-e-book-fiction"),
-          fetchTrendingBooks("combined-print-and-e-book-nonfiction"),
+          fetchTrendingBooks('combined-print-and-e-book-fiction'),
+          fetchTrendingBooks('combined-print-and-e-book-nonfiction'),
         ]);
         setFictionBooks(fiction);
         setNonfictionBooks(nonfiction);
       } catch (error) {
-        console.error("Error fetching trending books:", error);
+        console.error('Error fetching trending books:', error);
       }
     };
 

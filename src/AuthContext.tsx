@@ -1,9 +1,9 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode } from 'react';
 
 const AuthContext = createContext({
   auth: {
     isSignedIn: false,
-    user: "",
+    user: '',
   },
   show: {
     signInForm: false,
@@ -25,7 +25,7 @@ interface IAuthProviderProps {
 function AuthProvider({ children }: IAuthProviderProps) {
   const [auth, setAuth] = useState({
     isSignedIn: false,
-    user: "",
+    user: '',
   });
 
   const [show, setShow] = useState({
@@ -43,7 +43,7 @@ function AuthProvider({ children }: IAuthProviderProps) {
   const signOut = () => {
     setAuth({
       isSignedIn: false,
-      user: "",
+      user: '',
     });
   };
 

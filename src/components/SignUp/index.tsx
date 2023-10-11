@@ -1,20 +1,21 @@
-import { useContext, useRef, useState } from "react";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import { useNavigate } from "react-router";
-import { AuthContext } from "../../AuthContext";
-import { signUpWithEmail } from "../../firebase-config";
-import { modalBox, modalHeader, modalBtn } from "../../MUIstyles/forms";
-import formatFirebaseError from "../../utilities/formatFirebaseError";
-import AuthAlert from "../AuthAlert/AuthAlert";
-import { CustomTextField } from "../../MUIstyles/userpage";
+import { useContext, useRef, useState } from 'react';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import { useNavigate } from 'react-router';
+
+import { AuthContext } from '../../AuthContext';
+import { signUpWithEmail } from '../../firebase-config';
+import { modalBox, modalHeader, modalBtn } from '../../MUIstyles/forms';
+import formatFirebaseError from '../../utilities/formatFirebaseError';
+import AuthAlert from '../AuthAlert/AuthAlert';
+import { CustomTextField } from '../../MUIstyles/userpage';
 
 function SignUp() {
   const [showAlert, setShowAlert] = useState(false);
-  const [alertText, setAlertText] = useState("");
+  const [alertText, setAlertText] = useState('');
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -26,7 +27,7 @@ function SignUp() {
 
   const handleSignUp = async () => {
     if (passwordRef.current!.value !== confirmPasswordRef.current!.value) {
-      setAlertText("Passwords do not match");
+      setAlertText('Passwords do not match');
       setShowAlert(true);
       return;
     }
@@ -34,10 +35,10 @@ function SignUp() {
       const email = emailRef.current!.value;
       const password = passwordRef.current!.value;
       const user = await signUpWithEmail(email, password);
-      if (user !== undefined && user !== "") {
+      if (user !== undefined && user !== '') {
         signIn(user);
         hideForms();
-        navigate("/profile");
+        navigate('/profile');
       }
     } catch (error: any) {
       const errorMessage = formatFirebaseError(error.message);
@@ -54,7 +55,7 @@ function SignUp() {
       aria-describedby="modal-modal-description"
     >
       <Box sx={modalBox}>
-        <Avatar sx={{ m: 0, bgcolor: "var(--primary)", color: "#242424" }}>
+        <Avatar sx={{ m: 0, bgcolor: 'var(--primary)', color: '#242424' }}>
           <RocketLaunchIcon />
         </Avatar>
         <h3 style={modalHeader}>Sign up</h3>

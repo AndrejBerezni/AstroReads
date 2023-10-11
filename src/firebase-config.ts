@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,7 +8,7 @@ import {
   signOut,
   setPersistence,
   browserSessionPersistence,
-} from "firebase/auth";
+} from 'firebase/auth';
 import {
   getFirestore,
   getDoc,
@@ -17,17 +17,17 @@ import {
   doc,
   arrayUnion,
   arrayRemove,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
-import { IBook } from "./pages/UserPage/Explore";
+import { IBook } from './pages/UserPage/Explore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API,
-  authDomain: "astroreads.firebaseapp.com",
-  projectId: "astroreads",
-  storageBucket: "astroreads.appspot.com",
-  messagingSenderId: "61575103862",
-  appId: "1:61575103862:web:76d0071050d0b93f7c6657",
+  authDomain: 'astroreads.firebaseapp.com',
+  projectId: 'astroreads',
+  storageBucket: 'astroreads.appspot.com',
+  messagingSenderId: '61575103862',
+  appId: '1:61575103862:web:76d0071050d0b93f7c6657',
 };
 
 const app = initializeApp(firebaseConfig);
@@ -37,7 +37,7 @@ setPersistence(authentication, browserSessionPersistence)
     // Persistence successfully enabled
   })
   .catch((error) => {
-    console.error("Error enabling persistence:", error);
+    console.error('Error enabling persistence:', error);
   });
 
 const db = getFirestore(app);
@@ -64,7 +64,7 @@ const signUpWithEmail = async (email: string, password: string) => {
     const newUser = await createUserWithEmailAndPassword(
       authentication,
       email,
-      password
+      password,
     );
     const newUserId = newUser.user.uid;
     createUserDocument(newUserId);
@@ -80,7 +80,7 @@ const signInWithEmail = async (email: string, password: string) => {
     const user = await signInWithEmailAndPassword(
       authentication,
       email,
-      password
+      password,
     );
     return user.user.uid;
   } catch (error) {
@@ -95,7 +95,7 @@ const signOutUser = () => {
 
 //Create user document in Firestore
 const createUserDocument = async (user: string) => {
-  await setDoc(doc(db, "users", user), {
+  await setDoc(doc(db, 'users', user), {
     books: [],
     wishlist: [],
   });
@@ -103,14 +103,14 @@ const createUserDocument = async (user: string) => {
 
 //Check if user document exists in Firestore
 const checkIfUserDocExists = async (user: string) => {
-  const userRef = doc(db, "users", user);
+  const userRef = doc(db, 'users', user);
   const userSnapshot = await getDoc(userRef);
   return userSnapshot.exists() ? true : false;
 };
 
 //Add book - if book already exists, it won't be added (handled by Firestore)
 const addBook = async (user: string, book: IBook, list: string) => {
-  const userRef = doc(db, "users", user);
+  const userRef = doc(db, 'users', user);
   await updateDoc(userRef, {
     [list]: arrayUnion(book),
   });
@@ -118,7 +118,7 @@ const addBook = async (user: string, book: IBook, list: string) => {
 
 //Delete book
 const deleteBook = async (user: string, book: IBook, list: string) => {
-  const userRef = doc(db, "users", user);
+  const userRef = doc(db, 'users', user);
   await updateDoc(userRef, {
     [list]: arrayRemove(book),
   });
@@ -126,7 +126,7 @@ const deleteBook = async (user: string, book: IBook, list: string) => {
 
 //Get books
 const getBooks = async (user: string, list: string) => {
-  const userRef = doc(db, "users", user);
+  const userRef = doc(db, 'users', user);
   const userSnapshot = await getDoc(userRef);
   return userSnapshot.data()![list];
 };

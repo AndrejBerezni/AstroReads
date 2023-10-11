@@ -1,13 +1,14 @@
-import { useState, ChangeEvent } from "react";
-import Box from "@mui/material/Box";
-import { debounce } from "lodash";
-import BookCard from "../../../components/BookCard";
-import SearchResultsButtons from "../../../components/button groups/SearchResultButtons";
-import searchBooks from "../../../api/searchBooks";
+import { useState, ChangeEvent } from 'react';
+import Box from '@mui/material/Box';
+import { debounce } from 'lodash';
+
+import BookCard from '../../../components/BookCard';
+import SearchResultsButtons from '../../../components/button groups/SearchResultButtons';
+import searchBooks from '../../../api/searchBooks';
 import {
   CustomTextField,
   bookContainerStyle,
-} from "../../../MUIstyles/userpage";
+} from '../../../MUIstyles/userpage';
 
 interface IBook {
   id: string;
@@ -20,7 +21,7 @@ interface IBook {
 
 function Explore() {
   const [results, setResults] = useState<IBook[]>([]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
   const debouncedSearchBooks = debounce(async (searchInput) => {
     const searchResults = await searchBooks(searchInput);
@@ -39,9 +40,9 @@ function Explore() {
     <Box>
       <CustomTextField
         sx={{
-          width: "500px",
-          maxWidth: "80%",
-          margin: "30px",
+          width: '500px',
+          maxWidth: '80%',
+          margin: '30px',
         }}
         label="Search"
         onChange={handleChange}

@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 
 interface IAnimationFadeInFromAboveProps {
   children: ReactNode;
@@ -20,7 +20,7 @@ function AnimationFadeInFromAbove({
       }}
       transition={{
         duration: 2,
-        type: "spring",
+        type: 'spring',
       }}
     >
       {children}

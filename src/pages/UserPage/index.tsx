@@ -1,19 +1,20 @@
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import { Outlet } from "react-router";
-import { Link, useLocation } from "react-router-dom";
-import AnimationFadeInFromAbove from "../../components/animation/AnimationFadeInFromAbove";
-import { tabStyle, userPageBoxStyle } from "../../MUIstyles/userpage";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import { Outlet } from 'react-router';
+import { Link, useLocation } from 'react-router-dom';
+
+import AnimationFadeInFromAbove from '../../components/animation/AnimationFadeInFromAbove';
+import { tabStyle, userPageBoxStyle } from '../../MUIstyles/userpage';
 
 function UserPage() {
   const location = useLocation();
   const getActiveTab = () => {
-    if (location.pathname === "/profile") {
+    if (location.pathname === '/profile') {
       return 0;
-    } else if (location.pathname === "/profile/mybooks") {
+    } else if (location.pathname === '/profile/mybooks') {
       return 1;
-    } else if (location.pathname === "/profile/wishlist") {
+    } else if (location.pathname === '/profile/wishlist') {
       return 2;
     }
     return 0;

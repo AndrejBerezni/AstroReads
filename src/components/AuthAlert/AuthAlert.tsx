@@ -1,6 +1,7 @@
-import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
-import { alertTitleStyle, alertStyle } from "../../MUIstyles/forms";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
+import { alertTitleStyle, alertStyle } from '../../MUIstyles/forms';
 
 interface IAlertProps {
   alertText: string;

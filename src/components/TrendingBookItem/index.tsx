@@ -1,8 +1,9 @@
-import "./styles.css";
-import Badge from "@mui/material/Badge";
-import Button from "@mui/material/Button";
-import { IBookTrending } from "../../pages/Trending";
-import AnimationTrendingBook from "../animation/AnimationTrendingBook";
+import './styles.css';
+import Badge from '@mui/material/Badge';
+import Button from '@mui/material/Button';
+
+import { IBookTrending } from '../../pages/Trending';
+import AnimationTrendingBook from '../animation/AnimationTrendingBook';
 
 interface ITrendingBookItemProps {
   book: IBookTrending;
@@ -15,8 +16,8 @@ function TrendingBookItem({ book }: ITrendingBookItemProps) {
         badgeContent={book.rank}
         color="primary"
         anchorOrigin={{
-          vertical: "top",
-          horizontal: "left",
+          vertical: 'top',
+          horizontal: 'left',
         }}
       >
         <div className="trending-book-item">

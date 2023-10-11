@@ -1,28 +1,29 @@
-import { useContext, useRef, useState } from "react";
-import GoogleIcon from "@mui/icons-material/Google";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Modal from "@mui/material/Modal";
-import { useNavigate } from "react-router";
-import { AuthContext } from "../../AuthContext";
-import { signInWithGoogle, signInWithEmail } from "../../firebase-config";
+import { useContext, useRef, useState } from 'react';
+import GoogleIcon from '@mui/icons-material/Google';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+import Modal from '@mui/material/Modal';
+import { useNavigate } from 'react-router';
+
+import { AuthContext } from '../../AuthContext';
+import { signInWithGoogle, signInWithEmail } from '../../firebase-config';
 import {
   modalBox,
   modalHeader,
   modalBtn,
   modalAvatar,
   modalP,
-} from "../../MUIstyles/forms";
-import formatFirebaseError from "../../utilities/formatFirebaseError";
-import AuthAlert from "../AuthAlert/AuthAlert";
-import { CustomTextField } from "../../MUIstyles/userpage";
+} from '../../MUIstyles/forms';
+import formatFirebaseError from '../../utilities/formatFirebaseError';
+import AuthAlert from '../AuthAlert/AuthAlert';
+import { CustomTextField } from '../../MUIstyles/userpage';
 
 function SignIn() {
   const [showAlert, setShowAlert] = useState(false);
-  const [alertText, setAlertText] = useState("");
+  const [alertText, setAlertText] = useState('');
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -35,10 +36,10 @@ function SignIn() {
   const handleGoogleSignIn = async () => {
     try {
       const user = await signInWithGoogle();
-      if (user !== undefined && user !== "") {
+      if (user !== undefined && user !== '') {
         signIn(user);
         hideForms();
-        navigate("/profile");
+        navigate('/profile');
       }
     } catch (error: any) {
       const errorMessage = formatFirebaseError(error.message);
@@ -52,10 +53,10 @@ function SignIn() {
       const email = emailRef.current!.value;
       const password = passwordRef.current!.value;
       const user = await signInWithEmail(email, password);
-      if (user !== undefined && user !== "") {
+      if (user !== undefined && user !== '') {
         signIn(user);
         hideForms();
-        navigate("/profile");
+        navigate('/profile');
       }
     } catch (error: any) {
       const errorMessage = formatFirebaseError(error!.message);
@@ -94,7 +95,7 @@ function SignIn() {
         />
         <Button
           variant="outlined"
-          sx={{ ...modalBtn, marginBottom: "10px" }}
+          sx={{ ...modalBtn, marginBottom: '10px' }}
           onClick={handleEmailSignIn}
         >
           Sign In
@@ -102,14 +103,14 @@ function SignIn() {
         <p style={modalP}>Don't have an account?</p>
         <Link
           href="#"
-          sx={{ fontFamily: "var(--text-font)" }}
+          sx={{ fontFamily: 'var(--text-font)' }}
           onClick={handleSignUpClick}
         >
-          {"Sign Up"}
+          {'Sign Up'}
         </Link>
         <p style={modalP}>Or</p>
         <Button sx={modalBtn} variant="outlined" onClick={handleGoogleSignIn}>
-          <GoogleIcon sx={{ marginRight: "5px" }} />
+          <GoogleIcon sx={{ marginRight: '5px' }} />
           Continue with Google
         </Button>
         {showAlert && (
