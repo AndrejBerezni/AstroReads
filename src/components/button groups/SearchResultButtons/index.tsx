@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
@@ -13,6 +13,7 @@ import { addBook } from '../../../firebase-config';
 import { AuthContext } from '../../../AuthContext';
 import { IBook } from '../../../pages/UserPage/Explore';
 import { cardButtonStyle } from '../../../MUIstyles/userpage';
+import usePopover from '../../../hooks/usePopover';
 
 interface ISearchResultsButtonProps {
   book: IBook;
@@ -21,19 +22,7 @@ interface ISearchResultsButtonProps {
 function SearchResultsButtons({ book }: Readonly<ISearchResultsButtonProps>) {
   const { auth } = useContext(AuthContext);
 
-  //handling description popover:
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
-  const handlePopClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const { anchorEl, handlePopClick, handlePopClose, open, id } = usePopover();
 
   return (
     <>

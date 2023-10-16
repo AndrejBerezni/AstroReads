@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import InfoIcon from '@mui/icons-material/Info';
@@ -14,6 +14,8 @@ import { cardButtonStyle } from '../../../MUIstyles/userpage';
 import { IBook } from '../../../pages/UserPage/Explore';
 import { AuthContext } from '../../../AuthContext';
 import { updateBookRead, deleteBook } from '../../../firebase-config';
+import usePopover from '../../../hooks/usePopover';
+
 interface IMyBooksButtonProps {
   book: IBook;
 }
@@ -21,19 +23,7 @@ interface IMyBooksButtonProps {
 function MyBooksButtons({ book }: Readonly<IMyBooksButtonProps>) {
   const { auth } = useContext(AuthContext);
 
-  //handling description popover:
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
-  const handlePopClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const { anchorEl, handlePopClick, handlePopClose, open, id } = usePopover();
 
   return (
     <>

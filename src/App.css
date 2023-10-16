@@ -1,6 +1,6 @@
 :root {
-  --head-font: "Orbitron", sans-serif;
-  --text-font: "Lato", sans-serif;
+  --head-font: 'Orbitron', sans-serif;
+  --text-font: 'Lato', sans-serif;
   --primary: #29def0;
   --secondary: #f00a60;
   --bg-color: #242424;
@@ -26,7 +26,7 @@ body {
   width: 100vw;
   height: 100vh;
   /* background-color: #242424; */
-  background-image: url("./assets/bgimage.png");
+  background-image: url('./assets/bgimage.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
