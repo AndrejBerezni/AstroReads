@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, useMemo, ReactNode } from 'react';
 
 const AuthContext = createContext({
   auth: {
@@ -22,7 +22,7 @@ interface IAuthProviderProps {
   children: ReactNode;
 }
 
-function AuthProvider({ children }: IAuthProviderProps) {
+function AuthProvider({ children }: Readonly<IAuthProviderProps>) {
   const [auth, setAuth] = useState({
     isSignedIn: false,
     user: '',
@@ -66,12 +66,21 @@ function AuthProvider({ children }: IAuthProviderProps) {
     });
   };
 
+  const contextValue = useMemo(
+    () => ({
+      auth,
+      show,
+      signIn,
+      signOut,
+      showSignIn,
+      showSignUp,
+      hideForms,
+    }),
+    [auth, show],
+  );
+
   return (
-    <AuthContext.Provider
-      value={{ auth, show, signIn, signOut, showSignIn, showSignUp, hideForms }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 }
 
