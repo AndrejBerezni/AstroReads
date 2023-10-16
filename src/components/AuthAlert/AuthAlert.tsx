@@ -8,7 +8,7 @@ interface IAlertProps {
   handleClose: () => void;
 }
 
-function AuthAlert({ alertText, handleClose }: IAlertProps) {
+function AuthAlert({ alertText, handleClose }: Readonly<IAlertProps>) {
   return (
     <Alert severity="error" onClose={handleClose} sx={alertStyle}>
       <AlertTitle sx={alertTitleStyle}>Error</AlertTitle>

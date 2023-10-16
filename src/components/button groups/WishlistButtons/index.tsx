@@ -18,7 +18,7 @@ interface IWishlistButtonProps {
   book: IBook;
 }
 
-function WishlistButtons({ book }: IWishlistButtonProps) {
+function WishlistButtons({ book }: Readonly<IWishlistButtonProps>) {
   const { auth } = useContext(AuthContext);
 
   //handling description popover:

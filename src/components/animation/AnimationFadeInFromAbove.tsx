@@ -7,7 +7,7 @@ interface IAnimationFadeInFromAboveProps {
 
 function AnimationFadeInFromAbove({
   children,
-}: IAnimationFadeInFromAboveProps) {
+}: Readonly<IAnimationFadeInFromAboveProps>) {
   return (
     <motion.div
       animate={{

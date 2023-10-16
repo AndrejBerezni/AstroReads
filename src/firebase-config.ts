@@ -105,7 +105,7 @@ const createUserDocument = async (user: string) => {
 const checkIfUserDocExists = async (user: string) => {
   const userRef = doc(db, 'users', user);
   const userSnapshot = await getDoc(userRef);
-  return userSnapshot.exists() ? true : false;
+  return userSnapshot.exists();
 };
 
 //Add book - if book already exists, it won't be added (handled by Firestore)

@@ -18,7 +18,7 @@ interface IMyBooksButtonProps {
   book: IBook;
 }
 
-function MyBooksButtons({ book }: IMyBooksButtonProps) {
+function MyBooksButtons({ book }: Readonly<IMyBooksButtonProps>) {
   const { auth } = useContext(AuthContext);
 
   //handling description popover:

@@ -9,7 +9,7 @@ interface IAnimationTrendingBookProps {
 function AnimationTrendingBook({
   children,
   delay,
-}: IAnimationTrendingBookProps) {
+}: Readonly<IAnimationTrendingBookProps>) {
   return (
     <motion.div
       className="trending-book-item-wrapper"

@@ -9,7 +9,7 @@ interface ITrendingBookItemProps {
   book: IBookTrending;
 }
 
-function TrendingBookItem({ book }: ITrendingBookItemProps) {
+function TrendingBookItem({ book }: Readonly<ITrendingBookItemProps>) {
   return (
     <AnimationTrendingBook delay={book.rank}>
       <Badge

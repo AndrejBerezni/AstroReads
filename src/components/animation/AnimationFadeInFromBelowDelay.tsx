@@ -7,7 +7,7 @@ interface IAnimationFadeInFromBelowDelayProps {
 
 function AnimationFadeInFromBelowDelay({
   children,
-}: IAnimationFadeInFromBelowDelayProps) {
+}: Readonly<IAnimationFadeInFromBelowDelayProps>) {
   return (
     <motion.div
       animate={{

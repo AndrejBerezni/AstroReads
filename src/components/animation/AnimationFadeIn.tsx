@@ -5,7 +5,7 @@ interface IAnimationFadeInProps {
   children: ReactNode;
 }
 
-function AnimationFadeIn({ children }: IAnimationFadeInProps) {
+function AnimationFadeIn({ children }: Readonly<IAnimationFadeInProps>) {
   return (
     <motion.div
       animate={{

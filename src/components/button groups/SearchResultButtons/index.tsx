@@ -18,7 +18,7 @@ interface ISearchResultsButtonProps {
   book: IBook;
 }
 
-function SearchResultsButtons({ book }: ISearchResultsButtonProps) {
+function SearchResultsButtons({ book }: Readonly<ISearchResultsButtonProps>) {
   const { auth } = useContext(AuthContext);
 
   //handling description popover:

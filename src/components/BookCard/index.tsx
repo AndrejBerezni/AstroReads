@@ -13,7 +13,7 @@ interface ISearchResultProps {
   children: ReactNode;
 }
 
-function BookCard({ book, children }: ISearchResultProps) {
+function BookCard({ book, children }: Readonly<ISearchResultProps>) {
   //shorten long titles
   function shortenText(text: string) {
     if (text.length > 50) {
