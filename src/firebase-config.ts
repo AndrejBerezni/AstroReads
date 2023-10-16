@@ -143,7 +143,11 @@ const deleteBook = async (user: string, book: IBook, list: string) => {
 const getBooks = async (user: string, list: string) => {
   const userRef = doc(db, 'users', user);
   const userSnapshot = await getDoc(userRef);
-  return userSnapshot.data()![list];
+  return userSnapshot
+    .data()!
+    [list].sort((a: IBook, b: IBook) =>
+      a.title > b.title ? 1 : a.title < b.title ? -1 : 0,
+    );
 };
 
 export {
