@@ -1,4 +1,6 @@
 import { useState, useContext } from 'react';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import InfoIcon from '@mui/icons-material/Info';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import CardActions from '@mui/material/CardActions';
@@ -11,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import { cardButtonStyle } from '../../../MUIstyles/userpage';
 import { IBook } from '../../../pages/UserPage/Explore';
 import { AuthContext } from '../../../AuthContext';
-import { deleteBook } from '../../../firebase-config';
+import { updateBookRead, deleteBook } from '../../../firebase-config';
 interface IMyBooksButtonProps {
   book: IBook;
 }
@@ -36,6 +38,15 @@ function MyBooksButtons({ book }: IMyBooksButtonProps) {
   return (
     <>
       <CardActions disableSpacing>
+        <Tooltip title={`Mark as ${book.read ? 'unread' : 'read'}`}>
+          <IconButton
+            aria-label="book read"
+            sx={cardButtonStyle}
+            onClick={async () => await updateBookRead(auth.user, book)}
+          >
+            {book.read ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+          </IconButton>
+        </Tooltip>
         <Tooltip title="Remove from My Books">
           <IconButton
             aria-label="delete book"

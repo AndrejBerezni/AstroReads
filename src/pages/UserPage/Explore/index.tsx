@@ -17,6 +17,8 @@ interface IBook {
   description: string;
   pages: number;
   image: string;
+  category: string;
+  read: boolean;
 }
 
 function Explore() {

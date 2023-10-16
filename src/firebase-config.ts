@@ -116,6 +116,21 @@ const addBook = async (user: string, book: IBook, list: string) => {
   });
 };
 
+//Update book (read)
+const updateBookRead = async (user: string, book: IBook) => {
+  const userRef = doc(db, 'users', user);
+  const updatedBook = {
+    ...book,
+    read: !book.read,
+  };
+  await updateDoc(userRef, {
+    books: arrayRemove(book),
+  });
+  await updateDoc(userRef, {
+    books: arrayUnion(updatedBook),
+  });
+};
+
 //Delete book
 const deleteBook = async (user: string, book: IBook, list: string) => {
   const userRef = doc(db, 'users', user);
@@ -138,6 +153,7 @@ export {
   signInWithEmail,
   signOutUser,
   addBook,
+  updateBookRead,
   deleteBook,
   getBooks,
 };

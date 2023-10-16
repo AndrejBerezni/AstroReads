@@ -13,9 +13,12 @@ const searchBooks = async (searchInput: string) => {
       description: item.volumeInfo?.description || 'Description Missing',
       pages: item.volumeInfo?.pageCount || 0,
       image: item.volumeInfo?.imageLinks?.thumbnail || '',
+      category: item.volumeInfo?.categories?.[0] || 'Uncategorized',
+      read: false,
     }));
     return items;
-  } catch (error) {
+  } catch (error: any) {
+    console.log(error.message);
     throw new Error('An error occurred while searching for books.');
   }
 };
