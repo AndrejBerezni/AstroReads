@@ -8,7 +8,12 @@ import { useNavigate } from 'react-router';
 
 import { AuthContext } from '../../AuthContext';
 import { signUpWithEmail } from '../../firebase-config';
-import { modalBox, modalHeader, modalBtn } from '../../MUIstyles/forms';
+import {
+  modalBox,
+  modalHeader,
+  modalBtn,
+  modalAvatar,
+} from '../../MUIstyles/forms';
 import formatFirebaseError from '../../utilities/formatFirebaseError';
 import AuthAlert from '../AuthAlert/AuthAlert';
 import { CustomTextField } from '../../MUIstyles/userpage';
@@ -55,7 +60,7 @@ function SignUp() {
       aria-describedby="modal-modal-description"
     >
       <Box sx={modalBox}>
-        <Avatar sx={{ m: 0, bgcolor: 'var(--primary)', color: '#242424' }}>
+        <Avatar sx={modalAvatar}>
           <RocketLaunchIcon />
         </Avatar>
         <h3 style={modalHeader}>Sign up</h3>

@@ -1,9 +1,20 @@
-import './styles.css';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 
 import { IBookTrending } from '../../pages/Trending';
 import AnimationTrendingBook from '../animation/AnimationTrendingBook';
+import {
+  trendingCardStyle,
+  trendingCardImageStyle,
+  trendingCardContentStyle,
+  trendingCardTitleStyle,
+  trendingCardDescriptionStyle,
+  trendingCardAuthorStyle,
+} from '../../MUIstyles/trending';
 
 interface ITrendingBookItemProps {
   book: IBookTrending;
@@ -20,17 +31,41 @@ function TrendingBookItem({ book }: Readonly<ITrendingBookItemProps>) {
           horizontal: 'left',
         }}
       >
-        <div className="trending-book-item">
-          <div className="trending-book-item-content">
-            <h5>{book.title}</h5>
-            <h6>{book.author}</h6>
-            <p>{book.description}</p>
-            <Button variant="contained" href={book.buyLink} target="_blank">
+        <Card sx={trendingCardStyle}>
+          <CardContent sx={trendingCardContentStyle}>
+            <Typography
+              variant="h5"
+              color="primary"
+              sx={trendingCardTitleStyle}
+            >
+              {book.title}
+            </Typography>
+            <Typography variant="h6" sx={trendingCardAuthorStyle}>
+              {book.author}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={trendingCardDescriptionStyle}
+              color="primary"
+            >
+              {book.description}
+            </Typography>
+            <Button
+              variant="contained"
+              href={book.buyLink}
+              target="_blank"
+              sx={{ margin: '10px' }}
+            >
               Buy
             </Button>
-          </div>
-          <img src={book.image} alt={book.title} />
-        </div>
+          </CardContent>
+          <CardMedia
+            component="img"
+            sx={trendingCardImageStyle}
+            src={book.image}
+            alt={book.title}
+          />
+        </Card>
       </Badge>
     </AnimationTrendingBook>
   );

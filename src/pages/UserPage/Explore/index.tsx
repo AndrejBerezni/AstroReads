@@ -40,16 +40,7 @@ function Explore() {
 
   return (
     <Box>
-      <CustomTextField
-        sx={{
-          width: '500px',
-          maxWidth: '80%',
-          margin: '30px',
-        }}
-        label="Search"
-        onChange={handleChange}
-        value={input}
-      />
+      <CustomTextField label="Search" onChange={handleChange} value={input} />
       <Box sx={bookContainerStyle}>
         {input.length > 2 && //This will clean list if user deletes input, instead of keeping results for first 3 letters
           results.map((item) => (

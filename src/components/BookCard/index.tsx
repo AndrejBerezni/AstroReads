@@ -6,7 +6,12 @@ import Typography from '@mui/material/Typography';
 
 import missingImage from '../../assets/missingimage.png';
 import { IBook } from '../../pages/UserPage/Explore';
-import { bookCardStyle } from '../../MUIstyles/userpage';
+import {
+  bookCardStyle,
+  bookImageStyle,
+  bookTitleStyle,
+  bookAuthorStyle,
+} from '../../MUIstyles/userpage';
 
 interface ISearchResultProps {
   book: IBook;
@@ -27,29 +32,15 @@ function BookCard({ book, children }: Readonly<ISearchResultProps>) {
       <Card sx={bookCardStyle}>
         <CardMedia
           component="img"
-          sx={{
-            height: '150px',
-            width: '100px',
-          }}
+          sx={bookImageStyle}
           image={book.image ? book.image : missingImage}
           alt={book.title}
         />
         <CardContent>
-          <Typography
-            variant="h4"
-            color="text.secondary"
-            sx={{
-              fontSize: '1.2rem',
-              color: 'primary.main',
-              marginBottom: '10px',
-            }}
-          >
+          <Typography variant="h4" color="text.secondary" sx={bookTitleStyle}>
             {shortenText(book.title)}
           </Typography>
-          <Typography
-            variant="h5"
-            sx={{ fontSize: '1.2rem', color: '#f00a60' }}
-          >
+          <Typography variant="h5" sx={bookAuthorStyle}>
             {book.author}
           </Typography>
         </CardContent>
