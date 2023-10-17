@@ -1,7 +1,7 @@
 import './App.css';
 import { useContext, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { AuthContext } from './AuthContext';
 import Navbar from './components/Navbar';
@@ -47,7 +47,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/profile"
-          element={auth.isSignedIn ? <UserPage /> : <Home />}
+          element={auth.isSignedIn ? <UserPage /> : <Navigate to="/" replace />}
         >
           <Route index element={<Explore />} />
           <Route path="explore" element={<Explore />} />
