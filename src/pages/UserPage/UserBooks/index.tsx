@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
 import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
@@ -13,6 +13,10 @@ import splitArray from '../../../utilities/splitArray';
 interface IUserBooksProps {
   section: string;
 }
+
+const UpdateBooksContext = createContext({
+  updateBookList: async () => {},
+}); // creating context to avoid prop drill through 4 components to reach card buttons
 
 function UserBooks({ section }: Readonly<IUserBooksProps>) {
   const [books, setBooks] = useState<IBook[][]>([]);
@@ -35,34 +39,36 @@ function UserBooks({ section }: Readonly<IUserBooksProps>) {
   };
 
   return (
-    <Box sx={booksPageStyle}>
-      <BooksPage
-        books={books.length > 0 ? books[displayedBooks] : []}
-        buttons={section}
-        updateBooks={updateBookList}
-      />
-      <Pagination
-        page={page}
-        count={books.length}
-        renderItem={(item) => (
-          <PaginationItem
-            {...item}
-            onClick={() => {
-              handlePaginationClick(item.page);
-            }}
-            sx={{
-              color: 'var(--secondary)',
-              border: '2px solid var(--secondary)',
-            }}
-          />
-        )}
-        color="primary"
-        siblingCount={0}
-        variant="outlined"
-        sx={{ alignSelf: 'center' }}
-      />
-    </Box>
+    <UpdateBooksContext.Provider value={{ updateBookList }}>
+      <Box sx={booksPageStyle}>
+        <BooksPage
+          books={books.length > 0 ? books[displayedBooks] : []}
+          buttons={section}
+        />
+        <Pagination
+          page={page}
+          count={books.length}
+          renderItem={(item) => (
+            <PaginationItem
+              {...item}
+              onClick={() => {
+                handlePaginationClick(item.page);
+              }}
+              sx={{
+                color: 'var(--secondary)',
+                border: '2px solid var(--secondary)',
+              }}
+            />
+          )}
+          color="primary"
+          siblingCount={0}
+          variant="outlined"
+          sx={{ alignSelf: 'center' }}
+        />
+      </Box>
+    </UpdateBooksContext.Provider>
   );
 }
 
+export { UpdateBooksContext };
 export default UserBooks;

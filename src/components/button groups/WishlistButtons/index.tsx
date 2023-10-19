@@ -11,20 +11,18 @@ import IconButton from '@mui/material/IconButton';
 
 import { addBook, deleteBook } from '../../../firebase-config';
 import { AuthContext } from '../../../AuthContext';
+import { UpdateBooksContext } from '../../../pages/UserPage/UserBooks';
 import { IBook } from '../../../pages/UserPage/Explore';
 import { cardButtonStyle } from '../../../MUIstyles/userpage';
 import usePopover from '../../../hooks/usePopover';
 
 interface IWishlistButtonProps {
   book: IBook;
-  updateBooks: () => void;
 }
 
-function WishlistButtons({
-  book,
-  updateBooks,
-}: Readonly<IWishlistButtonProps>) {
+function WishlistButtons({ book }: Readonly<IWishlistButtonProps>) {
   const { auth } = useContext(AuthContext);
+  const { updateBookList } = useContext(UpdateBooksContext);
 
   const { anchorEl, handlePopClick, handlePopClose, open, id } = usePopover();
 
@@ -38,7 +36,7 @@ function WishlistButtons({
             onClick={async () => {
               await addBook(auth.user, book, 'books');
               await deleteBook(auth.user, book, 'wishlist');
-              await updateBooks();
+              await updateBookList();
             }}
           >
             <AddBoxIcon />
@@ -50,7 +48,7 @@ function WishlistButtons({
             sx={cardButtonStyle}
             onClick={async () => {
               await deleteBook(auth.user, book, 'wishlist');
-              await updateBooks();
+              await updateBookList();
             }}
           >
             <RemoveCircleOutlineIcon />

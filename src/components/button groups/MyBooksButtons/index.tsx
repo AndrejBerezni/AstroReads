@@ -13,16 +13,17 @@ import IconButton from '@mui/material/IconButton';
 import { cardButtonStyle } from '../../../MUIstyles/userpage';
 import { IBook } from '../../../pages/UserPage/Explore';
 import { AuthContext } from '../../../AuthContext';
+import { UpdateBooksContext } from '../../../pages/UserPage/UserBooks';
 import { updateBookRead, deleteBook } from '../../../firebase-config';
 import usePopover from '../../../hooks/usePopover';
 
 interface IMyBooksButtonProps {
   book: IBook;
-  updateBooks: () => void;
 }
 
-function MyBooksButtons({ book, updateBooks }: Readonly<IMyBooksButtonProps>) {
+function MyBooksButtons({ book }: Readonly<IMyBooksButtonProps>) {
   const { auth } = useContext(AuthContext);
+  const { updateBookList } = useContext(UpdateBooksContext);
 
   const { anchorEl, handlePopClick, handlePopClose, open, id } = usePopover();
 
@@ -35,7 +36,7 @@ function MyBooksButtons({ book, updateBooks }: Readonly<IMyBooksButtonProps>) {
             sx={cardButtonStyle}
             onClick={async () => {
               await updateBookRead(auth.user, book);
-              await updateBooks();
+              await updateBookList();
             }}
           >
             {book.read ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
@@ -47,7 +48,7 @@ function MyBooksButtons({ book, updateBooks }: Readonly<IMyBooksButtonProps>) {
             sx={cardButtonStyle}
             onClick={async () => {
               await deleteBook(auth.user, book, 'books');
-              await updateBooks();
+              await updateBookList();
             }}
           >
             <RemoveCircleOutlineIcon />

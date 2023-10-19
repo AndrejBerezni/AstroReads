@@ -18,24 +18,15 @@ import {
 interface ISearchResultProps {
   book: IBook;
   buttons: string;
-  updateBooks: () => void;
 }
 
 const buttonComponent = {
   explore: (book: IBook) => <SearchResultsButtons book={book} />,
-  books: (book: IBook, updateBooks: () => void) => (
-    <MyBooksButtons book={book} updateBooks={updateBooks} />
-  ),
-  wishlist: (book: IBook, updateBooks: () => void) => (
-    <WishlistButtons book={book} updateBooks={updateBooks} />
-  ),
+  books: (book: IBook) => <MyBooksButtons book={book} />,
+  wishlist: (book: IBook) => <WishlistButtons book={book} />,
 };
 
-function BookCard({
-  book,
-  buttons,
-  updateBooks,
-}: Readonly<ISearchResultProps>) {
+function BookCard({ book, buttons }: Readonly<ISearchResultProps>) {
   //shorten long titles
   function shortenText(text: string) {
     if (text.length > 50) {
@@ -61,10 +52,7 @@ function BookCard({
             {book.author}
           </Typography>
         </CardContent>
-        {buttonComponent[buttons as keyof typeof buttonComponent](
-          book,
-          updateBooks,
-        )}
+        {buttonComponent[buttons as keyof typeof buttonComponent](book)}
       </Card>
     </div>
   );
