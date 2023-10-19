@@ -1,10 +1,12 @@
-import { ReactNode } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
 import missingImage from '../../assets/missingimage.png';
+import MyBooksButtons from '../button groups/MyBooksButtons';
+import SearchResultsButtons from '../button groups/SearchResultButtons';
+import WishlistButtons from '../button groups/WishlistButtons';
 import { IBook } from '../../pages/UserPage/Explore';
 import {
   bookCardStyle,
@@ -15,10 +17,16 @@ import {
 
 interface ISearchResultProps {
   book: IBook;
-  children: ReactNode;
+  buttons: string;
 }
 
-function BookCard({ book, children }: Readonly<ISearchResultProps>) {
+const buttonComponent = {
+  explore: (book: IBook) => <SearchResultsButtons book={book} />,
+  mybooks: (book: IBook) => <MyBooksButtons book={book} />,
+  wishlist: (book: IBook) => <WishlistButtons book={book} />,
+};
+
+function BookCard({ book, buttons }: Readonly<ISearchResultProps>) {
   //shorten long titles
   function shortenText(text: string) {
     if (text.length > 50) {
@@ -44,7 +52,7 @@ function BookCard({ book, children }: Readonly<ISearchResultProps>) {
             {book.author}
           </Typography>
         </CardContent>
-        {children}
+        {buttonComponent[buttons as keyof typeof buttonComponent](book)}
       </Card>
     </div>
   );

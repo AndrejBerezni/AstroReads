@@ -50,6 +50,11 @@ const bookContainerStyle = {
   padding: '20px',
 };
 
+const booksPageStyle = {
+  ...bookContainerStyle,
+  flexDirection: 'column',
+};
+
 const bookCardStyle = {
   width: 280,
   height: 380,
@@ -88,6 +93,7 @@ export {
   userPageBoxStyle,
   CustomTextField,
   bookContainerStyle,
+  booksPageStyle,
   bookCardStyle,
   bookImageStyle,
   bookTitleStyle,

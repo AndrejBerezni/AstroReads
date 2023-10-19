@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import { debounce } from 'lodash';
 
 import BookCard from '../../../components/BookCard';
-import SearchResultsButtons from '../../../components/button groups/SearchResultButtons';
 import searchBooks from '../../../api/searchBooks';
 import {
   CustomTextField,
@@ -44,9 +43,7 @@ function Explore() {
       <Box sx={bookContainerStyle}>
         {input.length > 2 && //This will clean list if user deletes input, instead of keeping results for first 3 letters
           results.map((item) => (
-            <BookCard key={item.id} book={item}>
-              <SearchResultsButtons book={item} />
-            </BookCard>
+            <BookCard key={item.id} book={item} buttons="explore" />
           ))}
       </Box>
     </Box>
