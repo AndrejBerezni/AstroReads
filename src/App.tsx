@@ -13,8 +13,7 @@ import Home from './pages/Home';
 import Trending from './pages/Trending';
 import UserPage from './pages/UserPage';
 import Explore from './pages/UserPage/Explore';
-import MyBooks from './pages/UserPage/MyBooks';
-import Wishlist from './pages/UserPage/Wishlist';
+import UserBooks from './pages/UserPage/UserBooks';
 
 const theme = createTheme({
   palette: {
@@ -51,8 +50,8 @@ function App() {
         >
           <Route index element={<Explore />} />
           <Route path="explore" element={<Explore />} />
-          <Route path="mybooks" element={<MyBooks />} />
-          <Route path="wishlist" element={<Wishlist />} />
+          <Route path="mybooks" element={<UserBooks section="books" />} />
+          <Route path="wishlist" element={<UserBooks section="wishlist" />} />
         </Route>
         <Route path="/trending" element={<Trending />} />
         <Route path="/about" element={<About />} />

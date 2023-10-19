@@ -10,18 +10,21 @@ import { getBooks } from '../../../firebase-config';
 import { AuthContext } from '../../../AuthContext';
 import splitArray from '../../../utilities/splitArray';
 
-function Wishlist() {
+interface IUserBooksProps {
+  section: string;
+}
+
+function UserBooks({ section }: Readonly<IUserBooksProps>) {
   const [books, setBooks] = useState<IBook[][]>([]);
   const [displayedBooks, setDisplayedBooks] = useState<number>(0);
   const { auth } = useContext(AuthContext);
 
   useEffect(() => {
     const getBookList = async () => {
-      const bookList = await getBooks(auth.user, 'wishlist');
+      const bookList = await getBooks(auth.user, section);
       setBooks(splitArray(bookList, 10));
     };
     getBookList();
-    console.log(books[displayedBooks]);
   }, [books]);
 
   const page = displayedBooks + 1;
@@ -34,7 +37,7 @@ function Wishlist() {
     <Box sx={booksPageStyle}>
       <BooksPage
         books={books.length > 0 ? books[displayedBooks] : []}
-        buttons="wishlist"
+        buttons={section}
       />
       <Pagination
         page={page}
@@ -60,4 +63,4 @@ function Wishlist() {
   );
 }
 
-export default Wishlist;
+export default UserBooks;

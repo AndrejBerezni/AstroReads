@@ -22,7 +22,7 @@ interface ISearchResultProps {
 
 const buttonComponent = {
   explore: (book: IBook) => <SearchResultsButtons book={book} />,
-  mybooks: (book: IBook) => <MyBooksButtons book={book} />,
+  books: (book: IBook) => <MyBooksButtons book={book} />,
   wishlist: (book: IBook) => <WishlistButtons book={book} />,
 };
 
