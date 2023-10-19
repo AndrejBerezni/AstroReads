@@ -51,7 +51,7 @@ function App() {
         >
           <Route index element={<Explore />} />
           <Route path="explore" element={<Explore />} />
-          <Route path="mybooks" element={<MyBooks />}></Route>
+          <Route path="mybooks" element={<MyBooks />} />
           <Route path="wishlist" element={<Wishlist />} />
         </Route>
         <Route path="/trending" element={<Trending />} />

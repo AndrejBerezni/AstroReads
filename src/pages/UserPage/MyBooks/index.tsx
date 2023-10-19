@@ -12,16 +12,14 @@ import { AuthContext } from '../../../AuthContext';
 import splitArray from '../../../utilities/splitArray';
 
 function MyBooks() {
-  const [books, setBooks] = useState<IBook[]>([]);
+  const [books, setBooks] = useState<IBook[][]>([]);
   const { auth } = useContext(AuthContext);
 
-  const getBookList = async () => {
-    const bookList = await getBooks(auth.user, 'books');
-
-    setBooks(bookList);
-  };
-
   useEffect(() => {
+    const getBookList = async () => {
+      const bookList = await getBooks(auth.user, 'books');
+      setBooks(splitArray(bookList, 10));
+    };
     getBookList();
   }, [books]);
 
@@ -31,10 +29,16 @@ function MyBooks() {
 
   return (
     <Box sx={bookContainerStyle}>
-      <BooksPage books={books} buttons="mybooks" />
+      {books.map((booksChunk: IBook[]) => (
+        <BooksPage
+          key={booksChunk[0].id}
+          books={booksChunk}
+          buttons="mybooks"
+        />
+      ))}
       <Pagination
         page={page}
-        count={10}
+        count={books.length}
         renderItem={(item) => (
           <PaginationItem
             component={Link}
