@@ -19,13 +19,14 @@ function UserBooks({ section }: Readonly<IUserBooksProps>) {
   const [displayedBooks, setDisplayedBooks] = useState<number>(0);
   const { auth } = useContext(AuthContext);
 
+  const updateBookList = async () => {
+    const bookList = await getBooks(auth.user, section);
+    setBooks(splitArray(bookList, 10));
+  };
+
   useEffect(() => {
-    const getBookList = async () => {
-      const bookList = await getBooks(auth.user, section);
-      setBooks(splitArray(bookList, 10));
-    };
-    getBookList();
-  }, [books]);
+    updateBookList();
+  }, [auth.user, section]);
 
   const page = displayedBooks + 1;
 
@@ -38,6 +39,7 @@ function UserBooks({ section }: Readonly<IUserBooksProps>) {
       <BooksPage
         books={books.length > 0 ? books[displayedBooks] : []}
         buttons={section}
+        updateBooks={updateBookList}
       />
       <Pagination
         page={page}

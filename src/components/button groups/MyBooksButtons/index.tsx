@@ -18,9 +18,10 @@ import usePopover from '../../../hooks/usePopover';
 
 interface IMyBooksButtonProps {
   book: IBook;
+  updateBooks: () => void;
 }
 
-function MyBooksButtons({ book }: Readonly<IMyBooksButtonProps>) {
+function MyBooksButtons({ book, updateBooks }: Readonly<IMyBooksButtonProps>) {
   const { auth } = useContext(AuthContext);
 
   const { anchorEl, handlePopClick, handlePopClose, open, id } = usePopover();
@@ -32,7 +33,10 @@ function MyBooksButtons({ book }: Readonly<IMyBooksButtonProps>) {
           <IconButton
             aria-label="book read"
             sx={cardButtonStyle}
-            onClick={async () => await updateBookRead(auth.user, book)}
+            onClick={async () => {
+              await updateBookRead(auth.user, book);
+              await updateBooks();
+            }}
           >
             {book.read ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
           </IconButton>
@@ -41,7 +45,10 @@ function MyBooksButtons({ book }: Readonly<IMyBooksButtonProps>) {
           <IconButton
             aria-label="delete book"
             sx={cardButtonStyle}
-            onClick={async () => await deleteBook(auth.user, book, 'books')}
+            onClick={async () => {
+              await deleteBook(auth.user, book, 'books');
+              await updateBooks();
+            }}
           >
             <RemoveCircleOutlineIcon />
           </IconButton>

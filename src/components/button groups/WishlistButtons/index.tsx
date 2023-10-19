@@ -17,9 +17,13 @@ import usePopover from '../../../hooks/usePopover';
 
 interface IWishlistButtonProps {
   book: IBook;
+  updateBooks: () => void;
 }
 
-function WishlistButtons({ book }: Readonly<IWishlistButtonProps>) {
+function WishlistButtons({
+  book,
+  updateBooks,
+}: Readonly<IWishlistButtonProps>) {
   const { auth } = useContext(AuthContext);
 
   const { anchorEl, handlePopClick, handlePopClose, open, id } = usePopover();
@@ -34,6 +38,7 @@ function WishlistButtons({ book }: Readonly<IWishlistButtonProps>) {
             onClick={async () => {
               await addBook(auth.user, book, 'books');
               await deleteBook(auth.user, book, 'wishlist');
+              await updateBooks();
             }}
           >
             <AddBoxIcon />
@@ -43,7 +48,10 @@ function WishlistButtons({ book }: Readonly<IWishlistButtonProps>) {
           <IconButton
             aria-label="remove from wishlist"
             sx={cardButtonStyle}
-            onClick={async () => await deleteBook(auth.user, book, 'wishlist')}
+            onClick={async () => {
+              await deleteBook(auth.user, book, 'wishlist');
+              await updateBooks();
+            }}
           >
             <RemoveCircleOutlineIcon />
           </IconButton>

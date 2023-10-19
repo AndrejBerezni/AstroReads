@@ -7,13 +7,19 @@ import BookCard from '../BookCard';
 interface IBooksPageProps {
   books: IBook[];
   buttons: string;
+  updateBooks: () => void;
 }
 
-function BooksPage({ books, buttons }: IBooksPageProps) {
+function BooksPage({ books, buttons, updateBooks }: IBooksPageProps) {
   return (
     <Box sx={bookContainerStyle}>
       {books.map((item) => (
-        <BookCard key={item.id} book={item} buttons={buttons} />
+        <BookCard
+          key={item.id}
+          book={item}
+          buttons={buttons}
+          updateBooks={updateBooks}
+        />
       ))}
     </Box>
   );
