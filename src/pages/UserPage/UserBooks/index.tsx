@@ -32,7 +32,7 @@ function UserBooks({ section }: Readonly<IUserBooksProps>) {
   useEffect(() => {
     updateBookList();
     setDisplayedBooks(0);
-    setPage(1);
+    setPage(1); //display first page of section when changing between sections
   }, [auth.user, section]);
 
   const handlePaginationClick = (item: number | null) => {
