@@ -21,6 +21,7 @@ const UpdateBooksContext = createContext({
 function UserBooks({ section }: Readonly<IUserBooksProps>) {
   const [books, setBooks] = useState<IBook[][]>([]);
   const [displayedBooks, setDisplayedBooks] = useState<number>(0);
+  const [page, setPage] = useState<number>(displayedBooks + 1); //passed to pagination to control current page
   const { auth } = useContext(AuthContext);
 
   const updateBookList = async () => {
@@ -30,12 +31,13 @@ function UserBooks({ section }: Readonly<IUserBooksProps>) {
 
   useEffect(() => {
     updateBookList();
+    setDisplayedBooks(0);
+    setPage(1);
   }, [auth.user, section]);
-
-  const page = displayedBooks + 1;
 
   const handlePaginationClick = (item: number | null) => {
     setDisplayedBooks(item! - 1);
+    setPage(item!);
   };
 
   return (
