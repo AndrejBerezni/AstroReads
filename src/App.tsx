@@ -2,7 +2,6 @@ import './App.css';
 import { useContext, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Route, Routes, Navigate } from 'react-router-dom';
-
 import { AuthContext } from './AuthContext';
 import Navbar from './components/Navbar';
 import SignIn from './components/SignIn';
@@ -38,7 +37,7 @@ function App() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [signIn, signOut]);
   return (
     <ThemeProvider theme={theme}>
       <Navbar />

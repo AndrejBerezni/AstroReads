@@ -2,13 +2,12 @@ import { useState, useEffect, useContext, createContext } from 'react';
 import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-
-import { booksPageStyle } from '../../../MUIstyles/userpage';
-import { IBook } from '../Explore';
+import { AuthContext } from '../../../AuthContext';
 import BooksPage from '../../../components/BooksPage';
 import { getBooks } from '../../../firebase-config';
-import { AuthContext } from '../../../AuthContext';
+import { booksPageStyle } from '../../../MUIstyles/userpage';
 import splitArray from '../../../utilities/splitArray';
+import { IBook } from '../Explore';
 
 interface IUserBooksProps {
   section: string;

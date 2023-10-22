@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router';
-
 import { AuthContext } from '../../AuthContext';
 import { signUpWithEmail } from '../../firebase-config';
 import {
@@ -14,9 +13,9 @@ import {
   modalBtn,
   modalAvatar,
 } from '../../MUIstyles/forms';
+import { CustomTextField } from '../../MUIstyles/userpage';
 import formatFirebaseError from '../../utilities/formatFirebaseError';
 import AuthAlert from '../AuthAlert/AuthAlert';
-import { CustomTextField } from '../../MUIstyles/userpage';
 
 function SignUp() {
   const [showAlert, setShowAlert] = useState(false);

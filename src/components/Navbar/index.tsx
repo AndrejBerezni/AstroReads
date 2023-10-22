@@ -8,7 +8,6 @@ import WhatshotIcon from '@mui/icons-material/Whatshot';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { useNavigate } from 'react-router-dom';
-
 import { AuthContext } from '../../AuthContext';
 import { signOutUser } from '../../firebase-config';
 import { navbarStyle, navbarItemStyle } from '../../MUIstyles/navbar';

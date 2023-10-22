@@ -2,18 +2,17 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-
 import missingImage from '../../assets/missingimage.png';
-import MyBooksButtons from '../button groups/MyBooksButtons';
-import SearchResultsButtons from '../button groups/SearchResultButtons';
-import WishlistButtons from '../button groups/WishlistButtons';
-import { IBook } from '../../pages/UserPage/Explore';
 import {
   bookCardStyle,
   bookImageStyle,
   bookTitleStyle,
   bookAuthorStyle,
 } from '../../MUIstyles/userpage';
+import { IBook } from '../../pages/UserPage/Explore';
+import MyBooksButtons from '../button groups/MyBooksButtons';
+import SearchResultsButtons from '../button groups/SearchResultButtons';
+import WishlistButtons from '../button groups/WishlistButtons';
 
 interface ISearchResultProps {
   book: IBook;

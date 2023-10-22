@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-
 import { bookContainerStyle } from '../../MUIstyles/userpage';
 import { IBook } from '../../pages/UserPage/Explore';
 import BookCard from '../BookCard';

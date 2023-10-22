@@ -18,7 +18,6 @@ import {
   arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
-
 import { IBook } from './pages/UserPage/Explore';
 
 const firebaseConfig = {

@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import { IBookTrending } from '../pages/Trending';
 
 const nyTimesApiKey = import.meta.env.VITE_NY_TIMES_API;

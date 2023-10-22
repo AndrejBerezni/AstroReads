@@ -4,18 +4,17 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import InfoIcon from '@mui/icons-material/Info';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import CardActions from '@mui/material/CardActions';
+import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-
-import { cardButtonStyle } from '../../../MUIstyles/userpage';
-import { IBook } from '../../../pages/UserPage/Explore';
 import { AuthContext } from '../../../AuthContext';
-import { UpdateBooksContext } from '../../../pages/UserPage/UserBooks';
 import { updateBookRead, deleteBook } from '../../../firebase-config';
 import usePopover from '../../../hooks/usePopover';
+import { cardButtonStyle } from '../../../MUIstyles/userpage';
+import { IBook } from '../../../pages/UserPage/Explore';
+import { UpdateBooksContext } from '../../../pages/UserPage/UserBooks';
 
 interface IMyBooksButtonProps {
   book: IBook;

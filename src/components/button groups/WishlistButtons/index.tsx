@@ -3,18 +3,17 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import InfoIcon from '@mui/icons-material/Info';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import CardActions from '@mui/material/CardActions';
+import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Popover from '@mui/material/Popover';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-
-import { addBook, deleteBook } from '../../../firebase-config';
 import { AuthContext } from '../../../AuthContext';
-import { UpdateBooksContext } from '../../../pages/UserPage/UserBooks';
-import { IBook } from '../../../pages/UserPage/Explore';
-import { cardButtonStyle } from '../../../MUIstyles/userpage';
+import { addBook, deleteBook } from '../../../firebase-config';
 import usePopover from '../../../hooks/usePopover';
+import { cardButtonStyle } from '../../../MUIstyles/userpage';
+import { IBook } from '../../../pages/UserPage/Explore';
+import { UpdateBooksContext } from '../../../pages/UserPage/UserBooks';
 
 interface IWishlistButtonProps {
   book: IBook;

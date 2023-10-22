@@ -4,9 +4,6 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-
-import { IBookTrending } from '../../pages/Trending';
-import AnimationTrendingBook from '../animation/AnimationTrendingBook';
 import {
   trendingCardStyle,
   trendingCardImageStyle,
@@ -15,6 +12,8 @@ import {
   trendingCardDescriptionStyle,
   trendingCardAuthorStyle,
 } from '../../MUIstyles/trending';
+import { IBookTrending } from '../../pages/Trending';
+import AnimationTrendingBook from '../animation/AnimationTrendingBook';
 
 interface ITrendingBookItemProps {
   book: IBookTrending;

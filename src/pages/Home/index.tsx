@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import './styles.css';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-
 import homeImage from '../../assets/astroreadshomeimage-nobg.png';
 import { AuthContext } from '../../AuthContext';
 import AnimationFadeInFromAbove from '../../components/animation/AnimationFadeInFromAbove';

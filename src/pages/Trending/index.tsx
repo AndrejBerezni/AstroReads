@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-
+import fetchTrendingBooks from '../../api/trendingBooks';
 import AnimationFadeIn from '../../components/animation/AnimationFadeIn';
 import TrendingBookItem from '../../components/TrendingBookItem';
 import {
   sectionContainerStyle,
   trendingContainerStyle,
 } from '../../MUIstyles/about';
-import fetchTrendingBooks from '../../api/trendingBooks';
 
 interface IBookTrending {
   title: string;

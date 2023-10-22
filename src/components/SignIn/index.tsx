@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router';
-
 import { AuthContext } from '../../AuthContext';
 import { signInWithGoogle, signInWithEmail } from '../../firebase-config';
 import {
@@ -17,9 +16,9 @@ import {
   modalAvatar,
   modalP,
 } from '../../MUIstyles/forms';
+import { CustomTextField } from '../../MUIstyles/userpage';
 import formatFirebaseError from '../../utilities/formatFirebaseError';
 import AuthAlert from '../AuthAlert/AuthAlert';
-import { CustomTextField } from '../../MUIstyles/userpage';
 
 function SignIn() {
   const [showAlert, setShowAlert] = useState(false);
